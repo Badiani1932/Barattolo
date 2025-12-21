@@ -1,0 +1,16 @@
+{
+  "files.watcherExclude": {
+    "**/*.jpg": true,
+    "**/*.png": true,
+    "**/*.jpeg": true,
+    "**/*.mp4": true,
+    "**/*.eps": true
+  },
+  "search.exclude": {
+    "**/*.jpg": true,
+    "**/*.png": true,
+    "**/*.jpeg": true,
+    "**/*.mp4": true,
+    "**/*.eps": true
+  }
+}
