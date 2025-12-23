@@ -880,6 +880,11 @@
 
     /* Mobile: tap-to-zoom (JS toggles .is-zoomed) */
     @media (hover:none) and (pointer:coarse){
+      @keyframes gallerySpinSlow{
+        from{ transform: translateY(-28px) scale(2.52) rotate(0deg); }
+        to{ transform: translateY(-28px) scale(2.52) rotate(360deg); }
+      }
+
       /* When a circle is zoomed, allow it to overflow the section without being clipped */
       #gallery.has-zoom{ overflow:visible; z-index:50; }
       #gallery.has-zoom .gallery-grid{ position:relative; z-index:2; }
@@ -887,10 +892,13 @@
       .gallery-item{ transform-origin:center; }
       .gallery-item.is-zoomed{
         /* Nudge up a bit so it doesn't get cut off by the next section */
-        transform:translateY(-18px) scale(2.52);
+        transform:translateY(-28px) scale(2.52);
+        /* Slow autonomous rotation while zoomed */
+        animation: gallerySpinSlow 70s linear infinite;
         box-shadow:0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255,90,158,0.3);
         z-index:10;
         border-color: var(--badiani-pink);
+        will-change: transform;
       }
       .gallery-grid.has-zoom .gallery-item:not(.is-zoomed){
         transform: scale(0.7);
@@ -898,6 +906,10 @@
         filter: blur(2px) grayscale(30%);
       }
       .gallery-item.is-zoomed img{ transform: scale(1.15); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .gallery-item.is-zoomed{ animation:none !important; }
     }
 
     /* Desktop-only hover behavior for gallery */
