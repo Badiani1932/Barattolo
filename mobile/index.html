@@ -817,8 +817,8 @@
     .specs-overlay-content{ position:relative; z-index:2; display:flex; flex-direction:row; align-items:flex-start; justify-content:center; width:100%; max-width:1150px; height:100vh; margin:0 auto; gap:30px; padding:25px; }
     /* IMMAGINE OVERLAY: quadrata e grande come il pannello specs */
     .specs-overlay-image{ 
-      width:48%; 
-      max-width:520px; 
+      width:38%; 
+      max-width:416px; 
       aspect-ratio:1/1;
       overflow:hidden; 
       border-radius:12px; 
@@ -851,7 +851,7 @@
     .spec-card:nth-child(odd) .spec-label{ color:var(--badiani-blue); }
     .spec-card:nth-child(even) .spec-label{ color:var(--badiani-pink); }
     .spec-value{ font-size:16px; font-weight:500; color:var(--badiani-gray); line-height:1.4; }
-    .specs-close-btn{ position:fixed; top:18px; right:18px; width:55px; height:55px; background:linear-gradient(135deg, var(--badiani-pink), #ff7ab7); border:none; border-radius:50%; color:#fff; font-size:28px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s ease; z-index:10; box-shadow:0 5px 20px rgba(240,103,166,0.5); }
+    .specs-close-btn{ position:fixed; top:18px; right:18px; width:55px; height:55px; background:linear-gradient(135deg, var(--badiani-pink), #ff7ab7); border:none; border-radius:50%; color:#fff; font-size:28px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s ease; z-index:10; box-shadow:0 5px 20px rgba(240,103,166,0.5); padding:0; line-height:1; font-family:system-ui, -apple-system, 'Segoe UI', Arial, sans-serif; }
     .specs-close-btn:hover{ background:linear-gradient(135deg, var(--badiani-blue), #2a4ab0); transform:rotate(90deg) scale(1.1); box-shadow:0 8px 28px rgba(30,57,141,0.6); }
 
     .gallery{ background: #ff6b9d url('assets/barattolo-tab.webp?v=20251222') center/cover no-repeat; padding:90px 20px; text-align:center; position:relative; overflow:hidden; }
@@ -1414,7 +1414,7 @@
       /* Specs overlay proporzionato - no scroll */
       .specs-overlay-content{flex-direction:column;align-items:center;padding:10px;height:100vh;overflow-y:auto;gap:14px;justify-content:flex-start;padding-top:52px;padding-bottom:24px;}
       /* +50% photo size on mobile */
-      .specs-overlay-image{width:86vw;max-width:320px;max-height:38vh;flex-shrink:0;}
+      .specs-overlay-image{width:69vw;max-width:256px;max-height:30vh;flex-shrink:0;}
       .specs-overlay-image img{padding:5px;}
       .specs-panel-fullscreen{width:95vw;max-width:none;max-height:none;padding:10px;flex-shrink:0;}
       .specs-panel-title{font-size:16px;margin-bottom:8px;padding-bottom:6px;}
@@ -1422,7 +1422,7 @@
       .spec-card{padding:6px 8px;border-radius:6px;border-left-width:3px;}
       .spec-label{font-size:12px;margin-bottom:2px;letter-spacing:0.3px;}
       .spec-value{font-size:14px;line-height:1.2;}
-      .specs-close-btn{top:8px;right:8px;width:40px;height:40px;font-size:20px;}
+      .specs-close-btn{top:8px;right:8px;width:40px;height:40px;font-size:20px;padding:0;line-height:1;font-family:system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;}
     }
     
     @media(max-width:600px){ 
@@ -2302,6 +2302,23 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         toggleItem(item);
       });
+
+      // Auto-reset when the Story section scrolls out of view
+      if ('IntersectionObserver' in window) {
+        const storySection = document.querySelector('#story');
+        if (storySection) {
+          const obs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) return;
+              items.forEach((it) => {
+                it.classList.remove('is-open');
+                it.setAttribute('aria-expanded', 'false');
+              });
+            });
+          }, { threshold: 0.12 });
+          obs.observe(storySection);
+        }
+      }
     })();
 
     // Mission/Vision tab switcher
@@ -2336,6 +2353,12 @@ document.addEventListener('DOMContentLoaded', () => {
       function centerScroller(){
         const max = scroller.scrollWidth - scroller.clientWidth;
         if (max > 0) scroller.scrollLeft = max / 2;
+      }
+
+      function collapse(){
+        section.classList.remove('is-expanded');
+        section.style.cursor = '';
+        scroller.scrollLeft = 0;
       }
 
       // Avoid toggling while the user is swiping/dragging
@@ -2374,6 +2397,17 @@ document.addEventListener('DOMContentLoaded', () => {
           scroller.scrollLeft = 0;
         }
       });
+
+      // Auto-collapse when the section scrolls out of view
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) return;
+            collapse();
+          });
+        }, { threshold: 0.1 });
+        obs.observe(section);
+      }
 
       // Desktop: mouse drag to pan horizontally when expanded
       let isDragging = false;
@@ -2456,6 +2490,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         grid.classList.remove('has-zoom');
         section && section.classList.remove('has-zoom');
+      }
+
+      // Auto-close zoom if the gallery section leaves the viewport
+      if ('IntersectionObserver' in window && section) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) return;
+            closeAll();
+          });
+        }, { threshold: 0.1 });
+        obs.observe(section);
       }
 
       function toggleItem(item){
@@ -2583,6 +2628,20 @@ document.addEventListener('DOMContentLoaded', () => {
         heroBg.scrollLeft = heroBg.scrollWidth / 4; // Start centered
       }
     });
+
+    // Auto-exit scroll-mode when the hero leaves the viewport
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) return;
+          isScrollMode = false;
+          hero.classList.remove('scroll-mode');
+          // Reset scroll position so the hero is consistent when coming back
+          if (heroBg) heroBg.scrollLeft = 0;
+        });
+      }, { threshold: 0.15 });
+      obs.observe(hero);
+    }
 
     // Prevent scrolling from bubbling and toggling mode
     heroBg.addEventListener('scroll', function(e){
