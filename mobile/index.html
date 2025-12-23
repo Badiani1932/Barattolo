@@ -878,21 +878,62 @@
     .gallery-item:hover{ transform:none; }
     .gallery-grid:hover .gallery-item:not(:hover){ transform:none; opacity:1; filter:none; }
 
-    /* Mobile: tap-to-zoom (JS toggles .is-zoomed) */
+    /* Mobile: tap-to-zoom (round, no crop, no clipping) */
     @media (hover:none) and (pointer:coarse){
       .gallery-item{ transform-origin:center; }
-      .gallery-item.is-zoomed{
-        transform:scale(2.52);
-        box-shadow:0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255,90,158,0.3);
-        z-index:10;
-        border-color: var(--badiani-pink);
+
+      /* Backdrop for the zoom state (injected via JS) */
+      .gallery-zoom-backdrop{
+        position:fixed;
+        inset:0;
+        z-index:10001;
+        display:none;
+        background:rgba(0,0,0,0.70);
+        backdrop-filter: blur(10px);
+        opacity:0;
+        transition: opacity 0.28s ease;
       }
+      .gallery-zoom-backdrop.active{ display:block; opacity:1; }
+
+      .gallery-item.is-zoomed{
+        position:fixed;
+        left:50%;
+        top:50%;
+        /* final size (safe for mobile UI bars) */
+        width:min(78vmin, 340px);
+        height:min(78vmin, 340px);
+        max-width:92vw;
+        max-height:min(78dvh, 340px);
+        z-index:10002;
+        border-color: var(--badiani-pink);
+        box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 60px rgba(255,90,158,0.28);
+        background: radial-gradient(circle at 30% 20%, rgba(240,103,166,0.26), rgba(30,57,141,0.18) 55%, rgba(0,0,0,0.62) 100%);
+        /* FLIP vars set by JS */
+        --flip-x: 0px;
+        --flip-y: 0px;
+        --flip-scale: 1;
+        transform:
+          translate(-50%, -50%)
+          translate(var(--flip-x), var(--flip-y))
+          scale(var(--flip-scale));
+        will-change: transform;
+        transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* Keep image visible inside the circle (no crop). */
+      .gallery-item.is-zoomed img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        transform:none;
+        filter:brightness(1.06);
+      }
+
       .gallery-grid.has-zoom .gallery-item:not(.is-zoomed){
         transform: scale(0.7);
         opacity: 0.55;
         filter: blur(2px) grayscale(30%);
       }
-      .gallery-item.is-zoomed img{ transform: scale(1.15); }
     }
 
     /* Desktop-only hover behavior for gallery */
@@ -941,15 +982,13 @@
       inset:0;
       z-index:10002;
       display:none;
-      align-items:center;
-      justify-content:center;
       padding:18px;
       /* account for mobile browser UI */
       height:100vh;
       height:100dvh;
       min-height:100svh;
     }
-    .gallery-lightbox.active{ display:flex; }
+    .gallery-lightbox.active{ display:block; }
     .gallery-lightbox-backdrop{
       position:absolute;
       inset:0;
@@ -961,34 +1000,39 @@
     .gallery-lightbox.active .gallery-lightbox-backdrop{ opacity:1; }
 
     .gallery-lightbox-inner{
-      position:relative;
+      position:fixed;
       z-index:1;
-      width:min(92vw, 520px);
-      max-height:min(78dvh, 620px);
+      /* FLIP animation: we animate these via JS */
+      left:0;
+      top:0;
+      width:280px;
+      height:280px;
+      margin:0;
+      padding:0;
+      border-radius:50%;
+      overflow:hidden;
       background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
       border: 1px solid rgba(255,255,255,0.18);
-      border-radius:22px;
-      padding:12px;
       box-shadow:
         0 30px 90px rgba(0,0,0,0.55),
         0 0 60px rgba(240,103,166,0.18);
-      transform: translateY(18px) scale(0.96);
       opacity:0;
+      will-change: left, top, width, height, border-radius, opacity;
       transition:
-        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
-        opacity 0.28s ease;
+        left 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        top 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        width 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        height 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-radius 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.22s ease;
     }
-    .gallery-lightbox.active .gallery-lightbox-inner{
-      transform: translateY(0) scale(1);
-      opacity:1;
-    }
+    .gallery-lightbox.active .gallery-lightbox-inner{ opacity:1; }
     .gallery-lightbox-imgwrap{
-      border-radius:18px;
+      border-radius:inherit;
       overflow:hidden;
       background: radial-gradient(circle at 30% 20%, rgba(240,103,166,0.28), rgba(30,57,141,0.18) 55%, rgba(0,0,0,0.65) 100%);
-      aspect-ratio:1/1;
       width:100%;
-      max-height: min(62dvh, 520px);
+      height:100%;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -1013,8 +1057,8 @@
     }
     .gallery-lightbox-close{
       position:absolute;
-      top:-14px;
-      right:-14px;
+      top:10px;
+      right:10px;
       width:44px;
       height:44px;
       border-radius:50%;
@@ -1028,7 +1072,11 @@
       justify-content:center;
       box-shadow:0 10px 28px rgba(0,0,0,0.35);
       cursor:pointer;
+      opacity:0;
+      transform: scale(0.92);
+      transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+    .gallery-lightbox.active .gallery-lightbox-close{ opacity:1; transform: scale(1); }
 
     /* Reduce motion: keep it snappy and readable */
     @media (prefers-reduced-motion: reduce){
@@ -2545,8 +2593,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // Mobile: Gallery lightbox (tap opens a full, un-cropped image + nice text transition)
-    (function setupGalleryLightbox(){
+    // Mobile: Gallery round tap-to-zoom (FLIP) without opening any "window".
+    // The circle itself pops out to the viewport (position:fixed) and animates from/to its original spot.
+    (function setupGalleryTapZoom(){
       const isMobile = window.matchMedia && (
         window.matchMedia('(hover: none) and (pointer: coarse)').matches ||
         window.matchMedia('(max-width: 900px)').matches
@@ -2560,36 +2609,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const items = Array.from(grid.querySelectorAll('.gallery-item'));
       if (!items.length) return;
 
-      // Build lightbox once
-      const lightbox = document.createElement('div');
-      lightbox.className = 'gallery-lightbox';
-      lightbox.setAttribute('role', 'dialog');
-      lightbox.setAttribute('aria-modal', 'true');
-      lightbox.setAttribute('aria-label', 'Image preview');
-      lightbox.innerHTML =
-        '<div class="gallery-lightbox-backdrop" aria-hidden="true"></div>' +
-        '<div class="gallery-lightbox-inner">' +
-          '<button class="gallery-lightbox-close" type="button" aria-label="Close">&times;</button>' +
-          '<div class="gallery-lightbox-imgwrap">' +
-            '<img class="gallery-lightbox-img" alt="" />' +
-          '</div>' +
-          '<div class="gallery-lightbox-caption" aria-hidden="true"></div>' +
-        '</div>';
-      document.body.appendChild(lightbox);
-
-      const lbImg = lightbox.querySelector('.gallery-lightbox-img');
-      const lbCaption = lightbox.querySelector('.gallery-lightbox-caption');
-      const lbClose = lightbox.querySelector('.gallery-lightbox-close');
-
       // Accessibility + focus
       items.forEach((item) => {
         item.setAttribute('tabindex', '0');
         item.setAttribute('role', 'button');
-        item.setAttribute('aria-haspopup', 'dialog');
+        item.setAttribute('aria-expanded', 'false');
       });
 
       let prevOverflow = '';
       let lastActive = null;
+      let isAnimating = false;
+
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Backdrop once
+      const backdrop = document.createElement('div');
+      backdrop.className = 'gallery-zoom-backdrop';
+      document.body.appendChild(backdrop);
 
       function anyOtherModalOpen(){
         const specs = document.getElementById('specsOverlay');
@@ -2598,43 +2634,82 @@ document.addEventListener('DOMContentLoaded', () => {
         return specsOpen || customOpen;
       }
 
-      function openLightbox(fromItem){
-        const img = fromItem && fromItem.querySelector ? fromItem.querySelector('img') : null;
-        if (!img) return;
-
-        const src = img.currentSrc || img.src;
-        const alt = img.alt || '';
-
-        lastActive = fromItem;
-        lbImg.src = src;
-        lbImg.alt = alt;
-        lbCaption.textContent = alt;
-        lbCaption.style.display = alt ? '' : 'none';
-
-        prevOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-        document.body.classList.add('gallery-lightbox-open');
-        if (section) section.classList.add('is-lightbox-open');
-        lightbox.classList.add('active');
-
-        // focus close for quick dismissal
-        lbClose && lbClose.focus && lbClose.focus();
-      }
-
-      function closeLightbox(){
-        if (!lightbox.classList.contains('active')) return;
-        lightbox.classList.remove('active');
-        document.body.classList.remove('gallery-lightbox-open');
+      function closeAll(){
+        items.forEach((it) => {
+          it.classList.remove('is-zoomed');
+          it.setAttribute('aria-expanded', 'false');
+          it.style.removeProperty('--flip-x');
+          it.style.removeProperty('--flip-y');
+          it.style.removeProperty('--flip-scale');
+        });
+        grid.classList.remove('has-zoom');
         if (section) section.classList.remove('is-lightbox-open');
-
-        // restore scroll only if nothing else is open
-        if (!anyOtherModalOpen()) {
-          document.body.style.overflow = prevOverflow || '';
-        }
-
-        // give focus back
+        backdrop.classList.remove('active');
+        if (!anyOtherModalOpen()) document.body.style.overflow = prevOverflow || '';
         if (lastActive && lastActive.focus) lastActive.focus();
         lastActive = null;
+      }
+
+      function openItemZoom(item){
+        if (isAnimating) return;
+        const img = item.querySelector('img');
+        if (!img) return;
+
+        // If already open on the same item: close
+        if (item.classList.contains('is-zoomed')) {
+          closeAll();
+          return;
+        }
+
+        // Close previous
+        closeAll();
+
+        lastActive = item;
+        prevOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        grid.classList.add('has-zoom');
+        if (section) section.classList.add('is-lightbox-open');
+        backdrop.classList.add('active');
+
+        const first = item.getBoundingClientRect();
+
+        item.classList.add('is-zoomed');
+        item.setAttribute('aria-expanded', 'true');
+
+        // Measure final (after it becomes fixed/centered)
+        const last = item.getBoundingClientRect();
+        const dx = first.left - last.left;
+        const dy = first.top - last.top;
+        const scale = first.width / last.width;
+
+        if (reduceMotion) {
+          item.style.setProperty('--flip-x', '0px');
+          item.style.setProperty('--flip-y', '0px');
+          item.style.setProperty('--flip-scale', '1');
+          return;
+        }
+
+        // Apply inverted transform, then animate to identity
+        item.style.setProperty('--flip-x', dx + 'px');
+        item.style.setProperty('--flip-y', dy + 'px');
+        item.style.setProperty('--flip-scale', String(scale));
+
+        // Force style calculation
+        item.getBoundingClientRect();
+
+        isAnimating = true;
+        requestAnimationFrame(() => {
+          item.style.setProperty('--flip-x', '0px');
+          item.style.setProperty('--flip-y', '0px');
+          item.style.setProperty('--flip-scale', '1');
+        });
+
+        const onDone = (e) => {
+          if (!e || e.propertyName !== 'transform') return;
+          isAnimating = false;
+          item.removeEventListener('transitionend', onDone);
+        };
+        item.addEventListener('transitionend', onDone);
       }
 
       // Click on item => open
@@ -2657,7 +2732,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isDragging) return;
         const item = e.target && e.target.closest ? e.target.closest('.gallery-item') : null;
         if (!item) return;
-        openLightbox(item);
+        openItemZoom(item);
       });
 
       grid.addEventListener('keydown', (e) => {
@@ -2666,41 +2741,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = e.target && e.target.closest ? e.target.closest('.gallery-item') : null;
         if (!item) return;
         e.preventDefault();
-        openLightbox(item);
+        openItemZoom(item);
       });
 
-      // Close interactions
-      lbClose && lbClose.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeLightbox();
-      });
+      // Tap outside (backdrop) closes
+      backdrop.addEventListener('click', closeAll);
 
-      lightbox.addEventListener('click', (e) => {
-        // Clicking outside the inner card closes
-        const inner = e.target && e.target.closest ? e.target.closest('.gallery-lightbox-inner') : null;
-        if (inner) return;
-        closeLightbox();
-      });
-
+      // ESC closes
       document.addEventListener('keydown', (e) => {
         if (e.key !== 'Escape') return;
-        closeLightbox();
+        closeAll();
       });
-
-      // Swipe down to close (nice on mobile)
-      let swStartY = 0;
-      let swStartX = 0;
-      lightbox.addEventListener('pointerdown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        swStartY = e.clientY;
-        swStartX = e.clientX;
-      }, { passive: true });
-      lightbox.addEventListener('pointerup', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        const dy = e.clientY - swStartY;
-        const dx = Math.abs(e.clientX - swStartX);
-        if (dy > 70 && dx < 60) closeLightbox();
-      }, { passive: true });
     })();
 
     // Mobile: auto-zoom product cards while scrolling (when cards are in view)
