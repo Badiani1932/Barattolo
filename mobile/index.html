@@ -1394,12 +1394,43 @@
       .customizer-title{ font-size: 5vw; }
       .customizer-subtitle{ font-size: 3vw; }
       
-      /* Specs overlay proporzionato - no scroll */
-      .specs-overlay-content{flex-direction:column;padding:10px;height:100vh;overflow-y:auto;gap:14px;justify-content:center;padding-top:64px;padding-bottom:24px;}
-      /* +50% photo size on mobile */
-      .specs-overlay-image{width:90vw;max-width:330px;max-height:38vh;flex-shrink:0;}
-      .specs-overlay-image img{padding:5px;}
-      .specs-panel-fullscreen{width:95vw;max-width:none;max-height:none;padding:10px;flex-shrink:0;}
+      /* Specs overlay (mobile): account for browser nav bar and avoid content cropping */
+      .specs-overlay{ height:100vh; height:100dvh; }
+      .specs-overlay-bg{ height:100vh; height:100dvh; }
+      .specs-overlay-content{
+        flex-direction:column;
+        padding:10px;
+        height:100vh;
+        height:100dvh;
+        /* iOS/Safari friendly fallback for the smallest viewport */
+        min-height:100svh;
+        overflow-y:auto;
+        gap:14px;
+        justify-content:flex-start;
+        padding-top:64px;
+        padding-bottom:24px;
+      }
+      /* Photo smaller on mobile so specs fit even with browser UI */
+      .specs-overlay-image{
+        width:auto;
+        max-width:90vw;
+        height:min(28dvh, 230px);
+        /* fallback if dvh isn't supported */
+        max-height:28vh;
+        aspect-ratio:1/1;
+        flex-shrink:0;
+      }
+      .specs-overlay-image img{ padding:0; }
+      .specs-panel-fullscreen{
+        width:95vw;
+        max-width:none;
+        max-height:none;
+        padding:10px;
+        /* critical for flex + overflow in column layout */
+        flex:1 1 auto;
+        min-height:0;
+        overflow-y:auto;
+      }
       .specs-panel-title{font-size:16px;margin-bottom:8px;padding-bottom:6px;}
       .specs-grid{gap:6px;}
       .spec-card{padding:6px 8px;border-radius:6px;border-left-width:3px;}
