@@ -298,6 +298,7 @@
 
     .header-wrapper{ position:sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
     header{ background:var(--badiani-blue); padding:18px 40px; display:flex; align-items:center; justify-content:space-between; position:relative; }
+    .logo-link{ display:flex; align-items:center; text-decoration:none; }
     .logo-img{ height:63px; width:auto; object-fit:contain; filter: invert(1) grayscale(1) brightness(200%); mix-blend-mode: screen; }
     .nav-menu{ display:flex; gap:35px; align-items:center; }
     .nav-menu a{ color:#fff; text-decoration:none; font-size:16px; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; padding:12px 20px; border-radius:25px; font-weight:500; }
@@ -543,7 +544,8 @@
     .global-presence-scroll-hint{
       position:absolute;
       left:50%;
-      bottom:14px;
+      top:14px;
+      bottom:auto;
       transform:translateX(-50%);
       background:rgba(0,0,0,0.55);
       color:#fff;
@@ -557,6 +559,8 @@
       pointer-events:none;
       z-index:4;
       white-space:nowrap;
+      max-width:calc(100% - 24px);
+      text-align:center;
     }
 
     /* Reference-style title: “BADIANI AROUND THE WORLD / MEANS / GELATO” */
@@ -878,7 +882,7 @@
     @media (hover:none) and (pointer:coarse){
       .gallery-item{ transform-origin:center; }
       .gallery-item.is-zoomed{
-        transform:scale(1.8);
+        transform:scale(2.52);
         box-shadow:0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255,90,158,0.3);
         z-index:10;
         border-color: var(--badiani-pink);
@@ -973,20 +977,22 @@
       }
       .nav-menu{
         position:fixed;
-        top:0;
+        top:72px;
         right:-100%;
         width:75vw;
         max-width:280px;
-        height:100vh;
+        height:auto;
+        max-height:calc(100vh - 96px);
         background:var(--badiani-blue);
         flex-direction:column;
-        padding:80px 20px 30px;
+        padding:16px 14px 16px;
         transition:right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow:-10px 0 30px rgba(0,0,0,0.5);
         gap:10px;
         align-items:stretch;
         z-index:1000;
         overflow-y:auto;
+        border-radius:16px 0 0 16px;
       } 
       .nav-menu.active{right:0;} 
       .nav-menu a{
@@ -1042,8 +1048,66 @@
       .hero.scroll-mode .hero-bg{ overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory; filter:none !important; }
       .hero.scroll-mode .hero-bg img{ width:200%; margin-left:0; scroll-snap-align:start; filter:brightness(1); }
       .hero.scroll-mode .hero-bg::-webkit-scrollbar{ display:none; }
-      .hero-scroll-hint{ position:absolute; bottom:80px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.6); color:#fff; padding:8px 16px; border-radius:20px; font-size:11px; text-transform:uppercase; letter-spacing:1px; opacity:0; transition:opacity 0.3s; pointer-events:none; z-index:5; }
-      .hero.scroll-mode .hero-scroll-hint{ opacity:1; }
+      /* Mobile: replace the big “scroll” pill with subtle arrows so the image stays visible */
+      .hero-scroll-hint{ display:none !important; }
+
+      .hero.scroll-mode::before,
+      .hero.scroll-mode::after{
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        width:34px;
+        height:34px;
+        border-radius:999px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:rgba(0,0,0,0.28);
+        color:rgba(255,255,255,0.92);
+        font-size:24px;
+        line-height:1;
+        z-index:6;
+        pointer-events:none;
+        box-shadow:0 6px 18px rgba(0,0,0,0.22);
+        text-shadow:0 2px 10px rgba(0,0,0,0.35);
+      }
+      .hero.scroll-mode::before{ content:"\2039"; left:10px; }
+      .hero.scroll-mode::after{ content:"\203A"; right:10px; }
+
+      /* Locations (expanded): show arrows on the image layer */
+      .global-presence-scroll-hint{ display:none !important; }
+
+      /* IMPORTANT: arrows must NOT be inside the scroll container (otherwise they scroll away).
+         We overlay them via a separate element positioned over the section. */
+      .global-presence-arrows{ display:none; }
+      .global-presence.is-expanded .global-presence-arrows{
+        display:block;
+        position:absolute;
+        inset:0;
+        z-index:6;
+        pointer-events:none;
+      }
+      .global-presence.is-expanded .global-presence-arrows::before,
+      .global-presence.is-expanded .global-presence-arrows::after{
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        width:34px;
+        height:34px;
+        border-radius:999px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:rgba(0,0,0,0.28);
+        color:rgba(255,255,255,0.92);
+        font-size:24px;
+        line-height:1;
+        box-shadow:0 6px 18px rgba(0,0,0,0.22);
+        text-shadow:0 2px 10px rgba(0,0,0,0.35);
+        opacity:0.95;
+      }
+      .global-presence.is-expanded .global-presence-arrows::before{ content:"\2039"; left:10px; }
+      .global-presence.is-expanded .global-presence-arrows::after{ content:"\203A"; right:10px; }
 
       /* Hero text fade-in animation */
       @keyframes heroFadeIn{
@@ -1331,8 +1395,9 @@
       .customizer-subtitle{ font-size: 3vw; }
       
       /* Specs overlay proporzionato - no scroll */
-      .specs-overlay-content{flex-direction:column;padding:10px;height:100vh;overflow-y:auto;gap:8px;justify-content:flex-start;padding-top:50px;}
-      .specs-overlay-image{width:70vw;max-width:220px;max-height:25vh;flex-shrink:0;}
+      .specs-overlay-content{flex-direction:column;padding:10px;height:100vh;overflow-y:auto;gap:14px;justify-content:center;padding-top:64px;padding-bottom:24px;}
+      /* +50% photo size on mobile */
+      .specs-overlay-image{width:90vw;max-width:330px;max-height:38vh;flex-shrink:0;}
       .specs-overlay-image img{padding:5px;}
       .specs-panel-fullscreen{width:95vw;max-width:none;max-height:none;padding:10px;flex-shrink:0;}
       .specs-panel-title{font-size:16px;margin-bottom:8px;padding-bottom:6px;}
@@ -1352,7 +1417,7 @@
       
       .gallery-item{ width:20vw; height:20vw; max-width:85px; max-height:85px; border-width:2px; }
       
-      .nav-menu{ width:80vw; padding:70px 15px 25px; }
+      .nav-menu{ width:80vw; padding:16px 14px 16px; }
       .nav-menu a{ font-size:13px; padding:12px 14px; }
       
       .card-img{ aspect-ratio: auto; }
@@ -1522,7 +1587,9 @@
 
 <div class="header-wrapper">
   <header>
-    <img src="assets/extracted/f473fa4a48ae6948929084c736e84f6274322e2d.webp" alt="Badiani Gelato Firenze 1932" class="logo-img">
+    <a class="logo-link" id="logoLink" href="#hero" aria-label="Back to top">
+      <img src="assets/extracted/f473fa4a48ae6948929084c736e84f6274322e2d.webp" alt="Badiani Gelato Firenze 1932" class="logo-img">
+    </a>
 
     <nav class="nav-menu" id="navMenu">
       <a href="#hero">Home</a>
@@ -1530,10 +1597,7 @@
       <a href="#story">Story</a>
       <a href="#heritage">Heritage</a>
       <a href="#barattolo">Il Barattolo</a>
-      <a href="#mission">Mission</a>
-      <a href="#gallery">Gallery</a>
       <a href="#locations">Locations</a>
-      <a href="#why">Why Badiani</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -1765,7 +1829,7 @@
 <div class="specs-overlay" id="specsOverlay" onclick="closeSpecsOnBackground(event)">
   <div class="specs-overlay-bg"></div>
   <button class="specs-close-btn" onclick="closeSpecs(event)">&times;</button>
-  <div class="specs-overlay-content" onclick="event.stopPropagation()">
+  <div class="specs-overlay-content">
     <div class="specs-overlay-image">
       <img id="overlayImage" src="" alt="">
     </div>
@@ -1796,6 +1860,7 @@
   <div class="global-presence-bg" aria-hidden="true">
     <img src="worldwide.webp?v=20251222" alt="" loading="lazy" decoding="async">
   </div>
+  <div class="global-presence-arrows" aria-hidden="true"></div>
   <div class="global-presence-headline">
     <h2 class="world-means-title" aria-label="Badiani around the world means gelato">
       <span class="wmt-top">Badiani Around The World</span>
@@ -1890,9 +1955,18 @@ function closeSpecs(event) {
 }
 
 function closeSpecsOnBackground(event) {
-  if(event.target.id === 'specsOverlay' || event.target.classList.contains('specs-overlay-bg')) {
-    closeSpecs(event);
+  const overlay = document.getElementById('specsOverlay');
+  if (!overlay || !overlay.classList.contains('active')) return;
+
+  // If the tap/click happened inside the visible panel (image or specs card), do nothing.
+  // We intentionally allow the outer container/padding area to behave like a backdrop.
+  const t = event && event.target;
+  if (t && t.closest) {
+    if (t.closest('.specs-overlay-image, .specs-panel-fullscreen, .specs-close-btn')) return;
   }
+
+  // Otherwise, any click within the overlay closes it (including the black background).
+  closeSpecs(event);
 }
 
 document.addEventListener('keydown', function(e) {
@@ -1932,6 +2006,29 @@ menuOverlay.addEventListener('click', () => {
   menuOverlay.style.visibility = 'hidden';
   document.body.style.overflow = '';
 });
+
+// Logo tap: scroll back to top (hero) and close menu if open
+const logoLink = document.getElementById('logoLink');
+if (logoLink) {
+  logoLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Close mobile menu if open
+    if (menuToggle && navMenu && menuOverlay) {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      menuOverlay.style.opacity = '0';
+      menuOverlay.style.visibility = 'hidden';
+      document.body.style.overflow = '';
+    }
+
+    const hero = document.getElementById('hero');
+    if (hero && hero.scrollIntoView) {
+      hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+}
 
 navMenu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
