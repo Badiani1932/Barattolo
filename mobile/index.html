@@ -48,7 +48,7 @@
 
     /* Base: all body text uses SuperGrotesk Regular (400) */
     body, html {
-      font-family: 'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB';
+      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       font-weight: 400;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -60,7 +60,7 @@
     /* Small/caption text inherit the regular font by default.
        Keep a utility class available for explicit lowercase usage. */
     .sga-lower{
-      font-family: 'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB';
+      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       text-transform: lowercase;
       letter-spacing: 0.4px;
     }
@@ -90,7 +90,7 @@
     footer,
     .stat-label,
     .card-sub {
-      font-family: 'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB';
+      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       font-weight: 300;
     }
 
@@ -290,7 +290,7 @@
     }
 
     body{
-      font-family: 'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB';
+      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       background:var(--bg-light); 
       color:var(--badiani-gray); 
       line-height:1.6;
@@ -304,6 +304,27 @@
     .nav-menu a{ color:#fff; text-decoration:none; font-size:16px; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; padding:12px 20px; border-radius:25px; font-weight:500; }
     .nav-menu a:hover{ background:var(--badiani-pink); transform:translateY(-2px); }
 
+    /* Music toggle button inside the nav menu */
+    .nav-menu .nav-music-toggle{
+      appearance:none;
+      -webkit-appearance:none;
+      border:none;
+      background:rgba(255,255,255,0.05);
+      color:#fff;
+      font-size:16px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      transition:all 0.3s;
+      padding:12px 20px;
+      border-radius:25px;
+      font-weight:500;
+      font-family:inherit;
+      line-height:1.1;
+    }
+    .nav-menu .nav-music-toggle:hover{ background:var(--badiani-pink); transform:translateY(-2px); }
+    .nav-menu .nav-music-toggle.is-off{ background:rgba(255,255,255,0.12); }
+    .nav-menu .nav-music-toggle:focus{ outline:2px solid rgba(240,103,166,0.65); outline-offset:2px; }
+
     .pink-banner{ background:var(--badiani-pink); color:#fff; padding:12px 20px 16px; text-align:center; font-size:15px; letter-spacing:2px; text-transform:uppercase; font-weight:500; line-height:1.5; transition:opacity 0.3s; overflow:hidden; }
     .pink-banner p,
     .pink-banner #bannerCurrent{ 
@@ -311,7 +332,7 @@
       min-height:18px; 
       /* force lowercase and use SuperGrotesk Regular */
       text-transform: lowercase;
-      font-family: 'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
+      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       font-weight: 400;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -802,8 +823,16 @@
     .card.classico .card-header{ background:linear-gradient(135deg, var(--badiani-blue), #2a4ab0); }
     .card.dolcevita .card-header{ background:linear-gradient(135deg, #3d2314, #5a3320); }
     .card.pistacchio .card-header{ background:linear-gradient(135deg, var(--badiani-green), #7f8c5a); }
-    .card-name{ font-size:30px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
-    .card-sub{ font-size:18px; opacity:.9; letter-spacing:1px; font-style:normal; font-weight:300; }
+    .card-name{ font-size:33px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
+    .card-sub{
+      font-size:18px;
+      opacity:.9;
+      letter-spacing:1px;
+      font-style:normal;
+      font-family:'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
+      font-weight:500;
+      text-transform:uppercase;
+    }
     .card-body{ padding:35px; }
     .card-description{ font-size:21px; margin-bottom:25px; line-height:1.9; color:var(--badiani-gray); font-weight:300; }
     .card-features{ list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
@@ -1021,6 +1050,18 @@
         border-radius:8px;
         text-align:left;
         letter-spacing:1px;
+      }
+
+      .nav-menu .nav-music-toggle{
+        font-size:14px;
+        padding:14px 16px;
+        width:100%;
+        border-top:1px solid rgba(240,103,166,0.4);
+        background:rgba(255,255,255,0.05);
+        border-radius:8px;
+        text-align:left;
+        letter-spacing:1px;
+        cursor:pointer;
       }
       .nav-menu a:first-child{
         border-top:none;
@@ -1254,7 +1295,7 @@
       .card-img{ aspect-ratio: auto; }
       .card-header{ padding:10px 12px 4px; }
       .card-body{ padding:4px 12px 12px; }
-      .card-name{ font-size:clamp(18px, 5vw, 22px); margin-bottom:2px; }
+      .card-name{ font-size:clamp(19.8px, 5.5vw, 24.2px); margin-bottom:2px; }
       .card-description{ font-size:clamp(13px, 3.5vw, 16px); line-height:1.6; margin-bottom:10px; }
       .card-sub{ font-size:clamp(13px, 3.6vw, 15px); }
       .card-features{ gap:4px; }
@@ -1516,6 +1557,11 @@
 </head>
 <body>
 
+<!-- BACKGROUND MUSIC (default ON; browser may require first interaction to start) -->
+<audio id="bgMusic" preload="auto" loop playsinline autoplay aria-hidden="true" style="display:none;">
+  <source src="assets/audio/music.mp3" type="audio/mpeg">
+</audio>
+
 <!-- CUSTOMIZER MODAL -->
 <div class="customizer-modal" id="customizerModal">
   <div class="customizer-content">
@@ -1616,6 +1662,7 @@
       <a href="#barattolo">Il Barattolo</a>
       <a href="#locations">Locations</a>
       <a href="#contact">Contact</a>
+      <button type="button" class="nav-music-toggle" id="musicToggleBtn" aria-pressed="true">Music: On</button>
     </nav>
 
     <div class="menu-toggle" id="menuToggle">
@@ -2056,6 +2103,104 @@ navMenu.querySelectorAll('a').forEach(link => {
     document.body.style.overflow = '';
   });
 });
+
+// Background music (default ON). Autoplay may be blocked until the first user interaction.
+(function setupBackgroundMusic(){
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('musicToggleBtn');
+  if (!audio || !btn) return;
+
+  const STORAGE_KEY = 'badianiMusicEnabled';
+  let enabled = true;
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    enabled = saved === null ? true : saved === 'true';
+  } catch (e) {
+    enabled = true;
+  }
+
+  const TARGET_VOLUME = 0.28;
+  const FADE_MS = 650;
+
+  audio.volume = 0;
+
+  function setButtonState(){
+    btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    btn.classList.toggle('is-off', !enabled);
+    btn.textContent = enabled ? 'Music: On' : 'Music: Off';
+  }
+
+  function fadeTo(volume, ms){
+    const clamp = (v) => Math.max(0, Math.min(1, v));
+    const from = audio.volume;
+    const to = clamp(volume);
+    const start = (window.performance && performance.now) ? performance.now() : Date.now();
+
+    function step(now){
+      const current = (window.performance && performance.now) ? now : Date.now();
+      const t = Math.min(1, (current - start) / ms);
+      audio.volume = clamp(from + (to - from) * t);
+      if (t < 1 && !audio.paused) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  let gestureHooked = false;
+  function hookFirstGestureToStart(){
+    if (gestureHooked) return;
+    gestureHooked = true;
+
+    const handler = () => {
+      if (!enabled) return;
+      // Try again on the very first interaction.
+      tryPlay();
+    };
+
+    // Use capture + once so we don't miss it and we don't keep listeners around.
+    window.addEventListener('pointerdown', handler, { capture: true, once: true });
+    window.addEventListener('touchstart', handler, { capture: true, once: true, passive: true });
+    window.addEventListener('keydown', handler, { capture: true, once: true });
+  }
+
+  async function tryPlay(){
+    if (!enabled) return;
+    try {
+      const maybePromise = audio.play();
+      if (maybePromise && typeof maybePromise.then === 'function') {
+        await maybePromise;
+      }
+      fadeTo(TARGET_VOLUME, FADE_MS);
+    } catch (err) {
+      // Autoplay is commonly blocked; we'll start on first user gesture.
+      gestureHooked = false;
+      hookFirstGestureToStart();
+    }
+  }
+
+  function stop(){
+    audio.pause();
+    audio.volume = 0;
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    enabled = !enabled;
+    try {
+      localStorage.setItem(STORAGE_KEY, String(enabled));
+    } catch (e) {
+      // ignore
+    }
+    setButtonState();
+    if (enabled) {
+      tryPlay();
+    } else {
+      stop();
+    }
+  });
+
+  setButtonState();
+  if (enabled) tryPlay();
+})();
 
 // Ensure the distribution CTA always opens the user's mail app
 // (capture-phase so it wins over any future click handlers)
