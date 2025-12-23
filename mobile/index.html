@@ -338,6 +338,14 @@
     @media (prefers-reduced-motion: reduce){
       .banner-ticker__track{ animation: none; transform: none; }
     }
+
+    @media (prefers-reduced-motion: reduce){
+      .global-presence-bg img{ transition: none !important; }
+      .global-presence-headline{ transition: none !important; }
+      .global-presence::before,
+      .global-presence::after{ transition: none !important; }
+      .global-presence-scroll-hint{ transition: none !important; }
+    }
     /* single-line banner: #bannerNext removed */
 
     .section-divider{
@@ -491,7 +499,30 @@
     .stat-num{ font-size:54px; font-weight:700; margin-bottom:12px; }
     .stat-label{ font-size:16px; text-transform:uppercase; letter-spacing:2px; opacity:0.95; font-weight:500; }
 
-    .global-presence{ width:100%; padding:0; line-height:1; background:#1f4495 url('worldwide.webp?v=20251222') center/contain no-repeat; position:relative; aspect-ratio: 8 / 3; overflow:hidden; }
+    .global-presence{ width:100%; padding:0; line-height:1; background:#1f4495; position:relative; aspect-ratio: 8 / 3; overflow:hidden; }
+    /* Media layer for Locations: use a real <img> so horizontal scroll works on mobile */
+    .global-presence-bg{ position:absolute; inset:0; overflow:hidden; z-index:0; }
+    .global-presence-bg img{
+      position:relative;
+      top:0;
+      left:0;
+      transform:none;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+      user-select:none;
+      -webkit-user-drag:none;
+      pointer-events:none;
+      will-change: transform, left, top, width, height;
+      transition:
+        width 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+        left 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+        top 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+        height 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
     .global-presence::after{ content:""; position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, #1f4495 100%); pointer-events:none; z-index:1; }
     /* Darken only the top area of the image for title readability */
     .global-presence::before{
@@ -505,9 +536,28 @@
       z-index:2;
       pointer-events:none;
     }
-    /* Hide any legacy inline image (e.g., old base64) so only the updated background is shown */
-    .global-presence img{ display:none; }
+    /* Hide legacy images if any were previously injected (we now render the bg via .global-presence-bg img) */
+    .global-presence > img{ display:none; }
     .global-presence-headline{ position:absolute; top:7%; left:0; right:0; text-align:center; z-index:3; padding:0 18px; }
+
+    .global-presence-scroll-hint{
+      position:absolute;
+      left:50%;
+      bottom:14px;
+      transform:translateX(-50%);
+      background:rgba(0,0,0,0.55);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      opacity:0;
+      transition:opacity 0.25s ease;
+      pointer-events:none;
+      z-index:4;
+      white-space:nowrap;
+    }
 
     /* Reference-style title: “BADIANI AROUND THE WORLD / MEANS / GELATO” */
     .global-presence-headline .world-means-title{
@@ -547,12 +597,20 @@
       transition: background-size 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-position 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), overflow 0.6s ease;
     }
     .global-presence.is-expanded {
-      overflow-x: auto;
-      overflow-y: hidden;
-      background-size: 250% auto !important;
-      background-position: center 98% !important;
+      overflow: hidden;
       cursor: grab;
       padding-bottom: 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    .global-presence.is-expanded .global-presence-bg{ overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .global-presence.is-expanded .global-presence-bg::-webkit-scrollbar{ display:none; }
+    .global-presence.is-expanded .global-presence-bg img{
+      top:-55%;
+      left:0;
+      transform:none;
+      width:250%;
+      height:155%;
+      pointer-events:none;
     }
     .global-presence-headline {
       transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -562,6 +620,7 @@
       opacity: 0;
       pointer-events: none;
     }
+    .global-presence.is-expanded .global-presence-scroll-hint{ opacity:1; }
     .global-presence::before {
       transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -814,6 +873,23 @@
     /* Mobile base: no hover-driven zoom/jitter */
     .gallery-item:hover{ transform:none; }
     .gallery-grid:hover .gallery-item:not(:hover){ transform:none; opacity:1; filter:none; }
+
+    /* Mobile: tap-to-zoom (JS toggles .is-zoomed) */
+    @media (hover:none) and (pointer:coarse){
+      .gallery-item{ transform-origin:center; }
+      .gallery-item.is-zoomed{
+        transform:scale(1.8);
+        box-shadow:0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255,90,158,0.3);
+        z-index:10;
+        border-color: var(--badiani-pink);
+      }
+      .gallery-grid.has-zoom .gallery-item:not(.is-zoomed){
+        transform: scale(0.7);
+        opacity: 0.55;
+        filter: blur(2px) grayscale(30%);
+      }
+      .gallery-item.is-zoomed img{ transform: scale(1.15); }
+    }
 
     /* Desktop-only hover behavior for gallery */
     @media (hover:hover) and (pointer:fine){
@@ -1144,9 +1220,8 @@
       .global-presence{ 
         aspect-ratio:auto; 
         height:clamp(180px, 35vh, 280px);
-        background-size:143% auto; 
-        background-position:center center;
       }
+      .global-presence-bg img{ width:143%; left:50%; transform:translateX(-50%); }
       
       /* Heritage proporzionato - compact */
       .heritage{ padding:24px 12px; }
@@ -1718,6 +1793,9 @@
 </div>
 
 <section id="locations" class="global-presence">
+  <div class="global-presence-bg" aria-hidden="true">
+    <img src="worldwide.webp?v=20251222" alt="" loading="lazy" decoding="async">
+  </div>
   <div class="global-presence-headline">
     <h2 class="world-means-title" aria-label="Badiani around the world means gelato">
       <span class="wmt-top">Badiani Around The World</span>
@@ -1725,6 +1803,7 @@
       <span class="wmt-bottom">Gelato</span>
     </h2>
   </div>
+  <div class="global-presence-scroll-hint" aria-hidden="true">← Scorri per vedere tutto →</div>
 </section>
 
 <div class="section-divider-data" data-section="why" data-text="heritage &middot; quality &middot; global reach &middot; retail excellence &middot; choose badiani"></div>
@@ -2136,42 +2215,171 @@ document.addEventListener('DOMContentLoaded', () => {
     (function setupGlobalPresence(){
       const section = document.querySelector('.global-presence');
       if (!section) return;
+
+      const scroller = section.querySelector('.global-presence-bg');
+      if (!scroller) return;
       
-      let isExpandedClickHandlerSet = false;
-      
-      section.addEventListener('click', () => {
+      function centerScroller(){
+        const max = scroller.scrollWidth - scroller.clientWidth;
+        if (max > 0) scroller.scrollLeft = max / 2;
+      }
+
+      // Avoid toggling while the user is swiping/dragging
+      let moved = false;
+      let startX = 0;
+      let startY = 0;
+
+      scroller.addEventListener('pointerdown', (e) => {
+        moved = false;
+        startX = e.clientX;
+        startY = e.clientY;
+      }, { passive: true });
+
+      scroller.addEventListener('pointermove', (e) => {
+        if (moved) return;
+        const dx = Math.abs(e.clientX - startX);
+        const dy = Math.abs(e.clientY - startY);
+        if (dx > 10 || dy > 10) moved = true;
+      }, { passive: true });
+
+      // Tap/click toggles expanded state (mobile requirement)
+      section.addEventListener('click', (e) => {
+        if (moved) return;
+
         section.classList.toggle('is-expanded');
-        section.style.cursor = section.classList.contains('is-expanded') ? 'grab' : 'pointer';
-        
-        // Solo setup mouse drag una volta
-        if (isExpandedClickHandlerSet) return;
-        isExpandedClickHandlerSet = true;
-        
-        let isScrolling = false;
-        let startX = 0;
-        let scrollLeft = 0;
+        const expanded = section.classList.contains('is-expanded');
 
-        section.addEventListener('mousedown', (e) => {
-          if (!section.classList.contains('is-expanded')) return;
-          isScrolling = true;
-          startX = e.pageX;
-          scrollLeft = section.scrollLeft;
-          section.style.cursor = 'grabbing';
-        });
+        // Cursor affordance only where it makes sense (mouse)
+        section.style.cursor = expanded ? 'grab' : '';
 
-        document.addEventListener('mousemove', (e) => {
-          if (!isScrolling) return;
-          const x = e.pageX;
-          const walk = (x - startX) * 2;
-          section.scrollLeft = scrollLeft - walk;
-        });
+        if (expanded) {
+          // Give layout a tick so scrollWidth is correct
+          requestAnimationFrame(centerScroller);
+        } else {
+          // Reset scroll so the collapsed centered crop is stable
+          scroller.scrollLeft = 0;
+        }
+      });
 
-        document.addEventListener('mouseup', () => {
-          isScrolling = false;
-          if (section.classList.contains('is-expanded')) {
-            section.style.cursor = 'grab';
-          }
+      // Desktop: mouse drag to pan horizontally when expanded
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartScrollLeft = 0;
+
+      scroller.addEventListener('pointerdown', (e) => {
+        if (!section.classList.contains('is-expanded')) return;
+        if (e.pointerType !== 'mouse') return;
+        isDragging = true;
+        dragStartX = e.clientX;
+        dragStartScrollLeft = scroller.scrollLeft;
+        scroller.setPointerCapture && scroller.setPointerCapture(e.pointerId);
+        section.style.cursor = 'grabbing';
+        e.preventDefault();
+      });
+
+      scroller.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - dragStartX;
+        scroller.scrollLeft = dragStartScrollLeft - (dx * 1.6);
+      });
+
+      scroller.addEventListener('pointerup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        if (section.classList.contains('is-expanded')) section.style.cursor = 'grab';
+      });
+
+      scroller.addEventListener('pointercancel', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        if (section.classList.contains('is-expanded')) section.style.cursor = 'grab';
+      });
+    })();
+
+    // Mobile: Gallery items tap-to-zoom (replaces hover)
+    (function setupGalleryTapZoom(){
+      const isMobile = window.matchMedia && (
+        window.matchMedia('(hover: none) and (pointer: coarse)').matches ||
+        window.matchMedia('(max-width: 900px)').matches
+      );
+      if (!isMobile) return;
+
+      const grid = document.querySelector('#gallery .gallery-grid');
+      if (!grid) return;
+
+      const items = Array.from(grid.querySelectorAll('.gallery-item'));
+      if (!items.length) return;
+
+      // Make items accessible + focusable
+      items.forEach((item) => {
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-expanded', item.classList.contains('is-zoomed') ? 'true' : 'false');
+      });
+
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+
+      grid.addEventListener('pointerdown', (e) => {
+        isDragging = false;
+        startX = e.clientX;
+        startY = e.clientY;
+      }, { passive: true });
+
+      grid.addEventListener('pointermove', (e) => {
+        if (isDragging) return;
+        const dx = Math.abs(e.clientX - startX);
+        const dy = Math.abs(e.clientY - startY);
+        if (dx > 10 || dy > 10) isDragging = true;
+      }, { passive: true });
+
+      function closeAll(){
+        items.forEach((it) => {
+          it.classList.remove('is-zoomed');
+          it.setAttribute('aria-expanded', 'false');
         });
+        grid.classList.remove('has-zoom');
+      }
+
+      function toggleItem(item){
+        const willOpen = !item.classList.contains('is-zoomed');
+        closeAll();
+        if (willOpen) {
+          item.classList.add('is-zoomed');
+          item.setAttribute('aria-expanded', 'true');
+          grid.classList.add('has-zoom');
+        }
+      }
+
+      grid.addEventListener('click', (e) => {
+        // Prevent outside handler from immediately closing
+        e.stopPropagation();
+        if (isDragging) return;
+        const item = e.target && e.target.closest ? e.target.closest('.gallery-item') : null;
+        if (!item) return;
+        toggleItem(item);
+      });
+
+      grid.addEventListener('keydown', (e) => {
+        const key = e.key;
+        if (key !== 'Enter' && key !== ' ') return;
+        const item = e.target && e.target.closest ? e.target.closest('.gallery-item') : null;
+        if (!item) return;
+        e.preventDefault();
+        toggleItem(item);
+      });
+
+      // Tap outside the gallery to close
+      document.addEventListener('click', (e) => {
+        if (grid.contains(e.target)) return;
+        closeAll();
+      });
+
+      // ESC closes when a gallery item is focused
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        closeAll();
       });
     })();
 
