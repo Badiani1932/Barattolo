@@ -1769,8 +1769,8 @@
   <div class="products-grid">
 
     <article class="card classico">
-      <div class="card-img">
-        <a class="card-btn" href="#" aria-label="View Buontalenti Classico specs" onclick="openSpecs('classico', 'BUONTALENTI CLASSICO'); event.stopPropagation(); return false;">View Specs</a>
+      <div class="card-img" onclick="openSpecs('classico', 'BUONTALENTI CLASSICO')">
+        <a class="card-btn" href="#" aria-label="View Buontalenti Classico specs" onclick="event.stopPropagation(); return false;">View Specs</a>
         <img src="classico.webp" alt="Buontalenti Classico">
       </div>
       <div class="card-header">
@@ -1791,8 +1791,8 @@
     </article>
 
     <article class="card dolcevita">
-      <div class="card-img">
-        <a class="card-btn" href="#" aria-label="View Buontalenti Dolcevita specs" onclick="openSpecs('dolcevita', 'BUONTALENTI DOLCEVITA'); event.stopPropagation(); return false;">View Specs</a>
+      <div class="card-img" onclick="openSpecs('dolcevita', 'BUONTALENTI DOLCEVITA')">
+        <a class="card-btn" href="#" aria-label="View Buontalenti Dolcevita specs" onclick="event.stopPropagation(); return false;">View Specs</a>
         <div class="card-award">Best Flavour 2015</div>
         <img src="dolcevita.webp" alt="Buontalenti Dolcevita">
       </div>
@@ -1814,8 +1814,8 @@
     </article>
 
     <article class="card pistacchio">
-      <div class="card-img">
-        <a class="card-btn" href="#" aria-label="View Buontalenti Pistacchio specs" onclick="openSpecs('pistacchio', 'BUONTALENTI PISTACCHIO'); event.stopPropagation(); return false;">View Specs</a>
+      <div class="card-img" onclick="openSpecs('pistacchio', 'BUONTALENTI PISTACCHIO')">
+        <a class="card-btn" href="#" aria-label="View Buontalenti Pistacchio specs" onclick="event.stopPropagation(); return false;">View Specs</a>
         <div class="card-award">World Best-Seller</div>
         <img src="pistacchio.webp" alt="Buontalenti Pistacchio">
       </div>
@@ -2057,7 +2057,12 @@ let selectedFlavor1 = { color: '#3d2314', stroke: '#2a1810' };
 let selectedFlavor2 = { color: '#f067a6', stroke: '#cc4882' };
 
 
+let specsOpenTimeout = null;
 function openSpecs(productId, title) {
+  // Previeni doppi tap
+  if (specsOpenTimeout) return;
+  specsOpenTimeout = setTimeout(() => { specsOpenTimeout = null; }, 500);
+
   const overlay = document.getElementById('specsOverlay');
   const overlayImage = document.getElementById('overlayImage');
   const overlayTitle = document.getElementById('overlayTitle');
