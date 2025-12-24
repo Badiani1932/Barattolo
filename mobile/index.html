@@ -25,7 +25,8 @@
     @font-face {
       font-family: 'SuperGroteskC';
       src: url('fonts/SuperGroteskC-MedLF.otf') format('opentype');
-      font-weight: 500;
+      /* Allow this single file to satisfy multiple requested weights */
+      font-weight: 1 1000;
       font-style: normal;
       font-display: swap;
     }
@@ -40,6 +41,17 @@
       font-display: swap;
     }
 
+    /* Lowercase-only font: use SuperGroteskC just for lowercase letters everywhere. */
+    @font-face {
+      font-family: 'SuperGroteskLower';
+      src: url('fonts/SuperGroteskC-MedLF.otf') format('opentype');
+      font-weight: 1 1000;
+      font-style: normal;
+      /* a-z + common Latin-1 lowercase (incl. Italian accents) */
+      unicode-range: U+0061-007A, U+00DF, U+00E0-00F6, U+00F8-00FF;
+      font-display: swap;
+    }
+
     /* Utility class: use SuperGroteskA and force lowercase */
     /* (defined once below after base typography) */
 
@@ -48,7 +60,7 @@
 
     /* Base: all body text uses SuperGrotesk Regular (400) */
     body, html {
-      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
+      font-family: 'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       font-weight: 400;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -60,15 +72,22 @@
     /* Small/caption text inherit the regular font by default.
        Keep a utility class available for explicit lowercase usage. */
     .sga-lower{
-      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
+      font-family: 'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       text-transform: lowercase;
       letter-spacing: 0.4px;
+    }
+
+    /* If a string contains lowercase characters but also uppercase in the same word,
+       we still want the WHOLE word/element to render in Grotesk C. This class is
+       applied automatically via JS (see bottom of the page). */
+    .sgc-has-lower{
+      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskB', 'SuperGroteskA', sans-serif !important;
     }
 
     /* Titles: use SuperGrotesk Medium and show as uppercase */
     h1, h2, h3, .hero h1, .section-title, .story-title, .card-name, .stat-num, .barattolo-text h2,
     .mission-title, .heritage h2 {
-      font-family: 'SuperGroteskDigits', 'SuperGroteskB', 'SuperGroteskA';
+      font-family: 'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskB', 'SuperGroteskA';
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.6px;
@@ -90,7 +109,7 @@
     footer,
     .stat-label,
     .card-sub {
-      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
+      font-family: 'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       font-weight: 300;
     }
 
@@ -332,7 +351,7 @@
       min-height:18px; 
       /* force lowercase and use SuperGrotesk Regular */
       text-transform: lowercase;
-      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
+      font-family: 'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       font-weight: 400;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -375,7 +394,7 @@
       color:#fff;
       padding:14px 20px;
       text-align:center;
-      font-family:'SuperGroteskDigits', 'SuperGroteskA', sans-serif;
+      font-family:'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskA', sans-serif;
       font-size:14px;
       letter-spacing:2px;
       text-transform:none;
@@ -594,7 +613,7 @@
     }
     .global-presence-headline .world-means-title .wmt-top{
       display:block;
-      font-family:'SuperGroteskDigits', 'SuperGroteskB', 'SuperGroteskA', sans-serif;
+      font-family:'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskB', 'SuperGroteskA', sans-serif;
       font-weight:700;
       font-size:clamp(18px, 3.24vw, 45.6px);
       letter-spacing:0.08em;
@@ -602,7 +621,7 @@
     .global-presence-headline .world-means-title .wmt-mid{
       display:block;
       margin-top:14px;
-      font-family:'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
+      font-family:'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskA', 'SuperGroteskB', sans-serif;
       font-weight:400;
       font-size:clamp(12px, 1.56vw, 30px);
       letter-spacing:0.24em;
@@ -611,7 +630,7 @@
     .global-presence-headline .world-means-title .wmt-bottom{
       display:block;
       margin-top:10px;
-      font-family:'SuperGroteskDigits', 'SuperGroteskB', 'SuperGroteskA', sans-serif;
+      font-family:'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskB', 'SuperGroteskA', sans-serif;
       font-weight:800;
       font-size:clamp(56.16px, 9.828vw, 152.88px);
       letter-spacing:0.06em;
@@ -872,6 +891,12 @@
     @keyframes slideRight{ from{transform:translateX(50px);opacity:0;} to{transform:translateX(0);opacity:1;} }
     .specs-panel-title{ font-size:22px; letter-spacing:1px; text-transform:uppercase; color:var(--badiani-blue); margin-bottom:18px; padding-bottom:10px; border-bottom:3px solid var(--badiani-pink); font-weight:700; }
     .specs-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; }
+
+    /* Specs boxes: always use Grotesk C (except the title above) */
+    .specs-panel-fullscreen .specs-grid,
+    .specs-panel-fullscreen .specs-grid *{
+      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskB', 'SuperGroteskA', sans-serif !important;
+    }
     .spec-card{ background:#fff; padding:15px; border-radius:10px; border-left:4px solid var(--badiani-pink); box-shadow:0 2px 8px rgba(0,0,0,0.08); transition:all 0.3s ease; }
     .spec-card:nth-child(odd){ border-left-color:var(--badiani-blue); }
     .spec-card:nth-child(even){ border-left-color:var(--badiani-pink); }
@@ -2791,6 +2816,80 @@ document.addEventListener('DOMContentLoaded', () => {
     heroBg.addEventListener('scroll', function(e){
       e.stopPropagation();
     });
+  })();
+</script>
+
+<script>
+  // Force Grotesk C for entire elements that contain lowercase letters,
+  // even if the same word also contains uppercase letters.
+  // We skip elements that are rendered as uppercase via CSS (text-transform: uppercase).
+  (function applyGroteskCToLowercaseContainers(){
+    const LOWER_RE = /[a-z\u00DF\u00E0-\u00F6\u00F8-\u00FF]/;
+    const SKIP_TAGS = new Set(['SCRIPT','STYLE','NOSCRIPT']);
+
+    function isSkippableElement(el){
+      if (!el) return true;
+      const tag = el.tagName;
+      if (!tag) return true;
+      if (SKIP_TAGS.has(tag)) return true;
+      return false;
+    }
+
+    function hasUppercaseTransform(el){
+      try {
+        return window.getComputedStyle(el).textTransform === 'uppercase';
+      } catch {
+        return false;
+      }
+    }
+
+    function scan(){
+      if (!document.body) return;
+
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode(node){
+            const v = node && node.nodeValue;
+            if (!v) return NodeFilter.FILTER_REJECT;
+            if (!LOWER_RE.test(v)) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        }
+      );
+
+      let textNode;
+      while ((textNode = walker.nextNode())) {
+        const el = textNode.parentElement;
+        if (!el || isSkippableElement(el)) continue;
+        if (hasUppercaseTransform(el)) continue;
+        el.classList.add('sgc-has-lower');
+      }
+    }
+
+    let scheduled = false;
+    function scheduleScan(){
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        scheduled = false;
+        scan();
+      });
+    }
+
+    // Initial pass
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', scan, { once: true });
+    } else {
+      scan();
+    }
+
+    // Keep it updated for dynamic content (e.g., banner ticker updates)
+    if ('MutationObserver' in window) {
+      const obs = new MutationObserver(scheduleScan);
+      obs.observe(document.body, { subtree: true, childList: true, characterData: true });
+    }
   })();
 </script>
 
