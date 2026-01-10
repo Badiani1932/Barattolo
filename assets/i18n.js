@@ -27,7 +27,7 @@
       'nav.barattolo': 'Il Barattolo',
       'nav.contact': 'Contact',
 
-      'header.beInspired': 'BE INSPIRED',
+      // 'header.beInspired': 'BE INSPIRED',
 
       'music.on': 'Music: On',
       'music.off': 'Music: Off',
@@ -188,7 +188,7 @@
       'nav.barattolo': 'Il Barattolo',
       'nav.contact': 'Contatti',
 
-      'header.beInspired': 'LASCIATI ISPIRARE',
+      // 'header.beInspired': 'LASCIATI ISPIRARE',
 
       'music.on': 'Musica: On',
       'music.off': 'Musica: Off',
@@ -349,7 +349,7 @@
       'nav.barattolo': 'Il Barattolo',
       'nav.contact': 'Contacto',
 
-      'header.beInspired': 'INSPÍRATE',
+      // 'header.beInspired': 'INSPÍRATE',
 
       'music.on': 'Música: On',
       'music.off': 'Música: Off',
@@ -510,7 +510,7 @@
       'nav.barattolo': 'Il Barattolo',
       'nav.contact': 'Contact',
 
-      'header.beInspired': 'SOIS INSPIRÉ',
+      // 'header.beInspired': 'SOIS INSPIRÉ',
 
       'music.on': 'Musique : On',
       'music.off': 'Musique : Off',
@@ -1003,7 +1003,7 @@
     document.title = 'Badiani Il Barattolo — Iconic Italian Gelato for Retail';
 
     // Header / nav
-    bindText('#beInspiredText', 'header.beInspired');
+    // bindText('#beInspiredText', 'header.beInspired');
 
     // Desktop nav (story/products/contact)
     bindText('#navMenu a[href="#story"]', 'nav.story');

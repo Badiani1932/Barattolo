@@ -166,6 +166,7 @@
         0 0 30px rgba(240,103,166,0.4),
         0 0 40px rgba(240,103,166,0.2);
       animation: neonPulse 2s ease-in-out infinite;
+      -webkit-user-select: none;
       user-select: none;
       white-space: nowrap;
     }
@@ -202,6 +203,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.85);
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       z-index: 10001;
       display: none;
@@ -320,6 +322,7 @@
     }
     .cursor-preview{
       background: rgba(255,255,255,0.2);
+      -webkit-backdrop-filter: blur(5px);
       backdrop-filter: blur(5px);
       padding: 20px;
       border-radius: 15px;
@@ -618,6 +621,7 @@
       object-position:center;
       display:block;
       user-select:none;
+      -webkit-user-select:none;
       -webkit-user-drag:none;
       pointer-events:none;
       will-change: transform, left, top, width, height;
@@ -951,7 +955,7 @@
 
     .specs-overlay{ position:fixed; top:0;left:0; width:100%; height:100%; z-index:9999; display:none; opacity:0; transition:opacity 0.5s ease; overflow:hidden; }
     .specs-overlay.active{ display:block; opacity:1; }
-    .specs-overlay-bg{ position:fixed; top:0;left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); backdrop-filter:blur(10px); }
+    .specs-overlay-bg{ position:fixed; top:0;left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
     .specs-overlay-content{ position:relative; z-index:2; display:flex; flex-direction:row; align-items:flex-start; justify-content:center; width:100%; max-width:1150px; height:100vh; margin:0 auto; gap:30px; padding:25px; }
     /* IMMAGINE OVERLAY: quadrata e grande come il pannello specs */
     .specs-overlay-image{ 
@@ -2294,7 +2298,7 @@ const navMenu = document.getElementById('navMenu');
 // Crea overlay per menu mobile
 const menuOverlay = document.createElement('div');
 menuOverlay.className = 'menu-overlay';
-menuOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999;opacity:0;visibility:hidden;transition:all 0.3s ease;backdrop-filter:blur(3px);';
+menuOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999;opacity:0;visibility:hidden;transition:all 0.3s ease;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);';
 document.body.appendChild(menuOverlay);
 
 menuToggle.addEventListener('click', () => {

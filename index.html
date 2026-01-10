@@ -187,6 +187,7 @@
         0 0 30px rgba(240,103,166,0.4),
         0 0 40px rgba(240,103,166,0.2);
       animation: neonPulse 2s ease-in-out infinite;
+      -webkit-user-select: none;
       user-select: none;
       white-space: nowrap;
       justify-self: center;
@@ -198,7 +199,8 @@
       z-index: 1;
     }
 
-    /* Wide / fullscreen desktop: true center of the header (page-centered). */
+    /* Wide / fullscreen desktop: center absolutely to be centered relative to page width.
+       Reduce nav size to accommodate. */
     @media (min-width: 1201px){
       .neon-text{
         position: absolute;
@@ -207,9 +209,8 @@
         transform: translate(-50%, -50%);
         margin: 0;
         text-align: center;
-        max-width: min(46vw, 640px);
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: none;
+        width: auto;
       }
     }
     @keyframes neonPulse {
@@ -256,6 +257,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.85);
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       z-index: 10001;
       display: none;
@@ -374,6 +376,7 @@
     }
     .cursor-preview{
       background: rgba(255,255,255,0.2);
+      -webkit-backdrop-filter: blur(5px);
       backdrop-filter: blur(5px);
       padding: 20px;
       border-radius: 15px;
@@ -394,8 +397,8 @@
     .logo-link:focus{ outline:none; }
     .logo-link:focus-visible{ outline:2px solid rgba(255,255,255,0.6); outline-offset:2px; border-radius:10px; }
     .logo-img{ height:clamp(42px, 4.0vw, 55px); width:auto; object-fit:contain; filter: invert(1) grayscale(1) brightness(200%); mix-blend-mode: screen; }
-    .nav-menu{ display:flex; gap:clamp(12px, 2.4vw, 35px); align-items:center; justify-self:end; position:relative; z-index:2; }
-    .nav-menu a{ color:#fff; text-decoration:none; font-size:clamp(13px, 1.15vw, 16px); letter-spacing:clamp(1px, 0.18vw, 2px); text-transform:uppercase; transition:all 0.3s; padding:clamp(9px, 1.0vw, 12px) clamp(12px, 1.6vw, 20px); border-radius:25px; font-weight:500; }
+    .nav-menu{ display:flex; gap:clamp(8px, 1.2vw, 20px); align-items:center; justify-self:end; position:relative; z-index:2; }
+    .nav-menu a{ color:#fff; text-decoration:none; font-size:clamp(12px, 0.9vw, 14px); letter-spacing:clamp(0.5px, 0.1vw, 1px); text-transform:uppercase; transition:all 0.3s; padding:clamp(6px, 0.6vw, 8px) clamp(8px, 1.0vw, 14px); border-radius:25px; font-weight:500; }
     .nav-menu a:hover{ background:var(--badiani-pink); transform:translateY(-2px); }
 
     /* Music toggle button inside the nav menu */
@@ -405,11 +408,11 @@
       border:none;
       background:rgba(255,255,255,0.05);
       color:#fff;
-      font-size:clamp(13px, 1.15vw, 16px);
-      letter-spacing:clamp(1px, 0.18vw, 2px);
+      font-size:clamp(12px, 0.9vw, 14px);
+      letter-spacing:clamp(0.5px, 0.1vw, 1px);
       text-transform:uppercase;
       transition:all 0.3s;
-      padding:clamp(9px, 1.0vw, 12px) clamp(12px, 1.6vw, 20px);
+      padding:clamp(6px, 0.6vw, 8px) clamp(8px, 1.0vw, 14px);
       border-radius:25px;
       font-weight:500;
       font-family:inherit;
@@ -822,7 +825,7 @@
 
     .specs-overlay{ position:fixed; top:0;left:0; width:100%; height:100%; z-index:9999; display:none; opacity:0; transition:opacity 0.5s ease; overflow:hidden; }
     .specs-overlay.active{ display:block; opacity:1; }
-    .specs-overlay-bg{ position:fixed; top:0;left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); backdrop-filter:blur(10px); }
+    .specs-overlay-bg{ position:fixed; top:0;left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
     .specs-overlay-content{ position:relative; z-index:2; display:flex; flex-direction:row; align-items:center; justify-content:center; width:100%; max-width:1150px; height:100vh; margin:0 auto; gap:30px; padding:25px; }
     /* IMMAGINE OVERLAY: quadrata e grande come il pannello specs */
     .specs-overlay-image{ 
@@ -990,7 +993,7 @@
     @media (min-width: 901px){
       .why .benefits{ transform: translateY(30%); }
     }
-    .benefit{ background:rgba(255,255,255,0.15); padding:30px 25px; border-radius:18px; border:2px solid rgba(255,255,255,0.2); transition:all 0.3s; backdrop-filter:blur(5px); }
+    .benefit{ background:rgba(255,255,255,0.15); padding:30px 25px; border-radius:18px; border:2px solid rgba(255,255,255,0.2); transition:all 0.3s; -webkit-backdrop-filter:blur(5px); backdrop-filter:blur(5px); }
     .benefit:hover{ border-color:var(--badiani-pink); background:rgba(255,255,255,0.22); transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.3); }
     .benefit h3{ font-size:22px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:15px; color:var(--badiani-yellow); font-weight:600; text-shadow:1px 1px 4px rgba(0,0,0,0.3); }
     .benefit p{ font-size:18px; opacity:.95; line-height:1.8; font-weight:300; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
@@ -1770,7 +1773,7 @@ const navMenu = document.getElementById('navMenu');
 // Crea overlay per menu mobile
 const menuOverlay = document.createElement('div');
 menuOverlay.className = 'menu-overlay';
-menuOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999;opacity:0;visibility:hidden;transition:all 0.3s ease;backdrop-filter:blur(3px);';
+menuOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999;opacity:0;visibility:hidden;transition:all 0.3s ease;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);';
 document.body.appendChild(menuOverlay);
 
 menuToggle.addEventListener('click', () => {
