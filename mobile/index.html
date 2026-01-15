@@ -612,6 +612,7 @@
     .barattolo-text p{ font-size:19px; line-height:1.9; margin-bottom:18px; font-weight:400; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
     .barattolo-text .highlight-pink{ background:var(--badiani-pink); color:#fff; padding:2px 6px; border-radius:3px; font-family:'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif; font-weight:500; text-transform:uppercase; font-variant-caps:normal; }
     .barattolo-text strong{ color:#fff; font-weight:600; }
+    .barattolo-text .barattolo-cta{ align-self:flex-start; width:auto; }
 
     .products{ padding:90px 20px; }
     .products > *{ position:relative; z-index:1; }
@@ -1197,6 +1198,7 @@
       .barattolo-text{ text-align:center; padding:40px 15px; background:#3d4f8f url('assets/barattolo-tab.webp?v=20251222') center/cover no-repeat; border-top: none; } 
       .barattolo-text h2{font-size:6vw;}
       .barattolo-text p{ font-size:3.5vw; line-height:1.6; }
+      .barattolo-text .barattolo-cta{ align-self:center; }
       
       /* Mission/Vision proporzionato */
       /* Mission/Vision: tab system to save vertical space */
@@ -1445,16 +1447,16 @@
         flex-direction:column;
         align-items:center;
         justify-content:center;
-        padding:40px 12px;
-        height:100dvh;
+        padding:48px 12px 28px;
         min-height:100vh;
+        height:100dvh;
         overflow-y:auto;
-        gap:14px;
+        gap:12px;
       }
       /* +50% photo size on mobile */
-      .specs-overlay-image{width:69vw;max-width:256px;max-height:30vh;flex-shrink:0;}
+      .specs-overlay-image{width:min(72vw, 280px);max-height:32vh;flex-shrink:0;}
       .specs-overlay-image img{padding:5px;}
-      .specs-panel-fullscreen{width:95vw;max-width:none;max-height:none;padding:10px;flex-shrink:0;}
+      .specs-panel-fullscreen{width:94vw;max-width:420px;max-height:52vh;overflow-y:auto;padding:12px;flex-shrink:0;}
       .specs-panel-title{font-size:16px;margin-bottom:8px;padding-bottom:6px;}
       .specs-grid{gap:6px;}
       .spec-card{padding:6px 8px;border-radius:6px;border-left-width:3px;}

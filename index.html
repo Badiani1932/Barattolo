@@ -476,14 +476,14 @@
     }
     .barattolo-image-pila img, .barattolo-image-pila video{ width:100%; border-radius:15px; box-shadow:0 15px 50px rgba(0,0,0,0.2); transition:transform 0.4s ease; display:block; }
     .barattolo-image-pila img{ height:auto; border:6px solid #fff; }
-    /* Video: fill the column (zoom a bit to avoid visible empty bands) */
+    /* Video: show full frame without cropping on desktop */
     .barattolo-image-pila video{
       display:block;
       width:100%;
-      height:100%;
+      height:auto;
       max-width:100%;
-      object-fit:cover;
-      object-position:center 55%;
+      object-fit:contain;
+      object-position:center center;
       border:0;
       border-radius:0;
       box-shadow:none;
@@ -492,17 +492,18 @@
       z-index:0;
     }
     .barattolo-image-pila:hover img{ transform:scale(1.05); }
-    .barattolo-text{ text-align:left; color:#fff; display:flex; flex-direction:column; justify-content:center; padding:90px 0; }
+    .barattolo-text{ text-align:left; color:#fff; display:flex; flex-direction:column; justify-content:center; padding:30px 0; }
     .barattolo-text h2{ position:relative; display:inline-block; padding-left:0; font-size:50px; letter-spacing:1px; text-transform:uppercase; color:#fff; margin-bottom:22px; font-weight:700; text-shadow:2px 2px 8px rgba(0,0,0,0.2); }
     .barattolo-text h2 span{ color:var(--badiani-pink); font-style:normal; }
     .barattolo-text p{ font-size:19px; line-height:1.9; margin-bottom:18px; font-weight:400; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
     .barattolo-text .highlight-pink{ background:var(--badiani-pink); color:#fff; padding:2px 6px; border-radius:3px; font-family:'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif; font-weight:500; text-transform:uppercase; font-variant-caps:normal; }
     .barattolo-text strong{ color:#fff; font-weight:600; }
+    .barattolo-text .barattolo-cta{ align-self:flex-start; width:auto; }
 
     /* Desktop-only: give the section more height and slightly bigger text next to the video */
     @media (min-width: 901px){
-      .barattolo-intro-content{ min-height: clamp(620px, 78vh, 880px); }
-      .barattolo-text{ padding:110px 0; }
+      .barattolo-intro-content{ min-height: auto; }
+      .barattolo-text{ padding:40px 0; }
       .barattolo-text h2{ font-size:56px; }
       .barattolo-text p{ font-size:21px; }
     }
@@ -866,6 +867,7 @@
       .barattolo-text{ text-align:center; padding:40px 15px; } 
       .barattolo-text h2{font-size:6vw;}
       .barattolo-text p{ font-size:3.5vw; line-height:1.6; }
+      .barattolo-text .barattolo-cta{ align-self:center; }
       
       /* Mission/Vision proporzionato */
       .mission-vision{grid-template-columns:1fr; gap:0;} 
