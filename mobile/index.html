@@ -1194,7 +1194,7 @@
       .barattolo-intro-content{ grid-template-columns:1fr; gap:0; padding:0; margin:0; background:transparent; } 
       .barattolo-image-pila{ max-width:none; width:100%; margin:0; padding:0; display:flex; align-items:flex-start; line-height:0; font-size:0; min-width:0; overflow:hidden; background:transparent !important; height:auto; }
       .barattolo-image-pila::after{ display:none !important; }
-      .barattolo-image-pila video{ width:100%; height:100%; min-height:0; max-height:64vh; object-fit:cover; border-radius:0; box-shadow:none; display:block; margin:0; padding:0; } 
+      .barattolo-image-pila video{ width:100%; height:auto; min-height:0; max-height:none; object-fit:contain; object-position:center; border-radius:0; box-shadow:none; display:block; margin:0; padding:0; background:#000; } 
       .barattolo-text{ text-align:center; padding:40px 15px; background:#3d4f8f url('assets/barattolo-tab.webp?v=20251222') center/cover no-repeat; border-top: none; } 
       .barattolo-text h2{font-size:6vw;}
       .barattolo-text p{ font-size:3.5vw; line-height:1.6; }
@@ -1388,7 +1388,7 @@
         align-items:center;
         gap:6px 8px;
         text-align:center;
-        margin:0 auto;
+        margin:0 auto 12px;
       }
       .story-title::before{
         position:static;
@@ -1404,6 +1404,7 @@
         width:100%;
         font-size:inherit;
         line-height:1.05;
+        margin-top:2px;
       }
       .story-timeline{
         display:flex;
@@ -1756,7 +1757,7 @@
 <section id="barattolo" class="barattolo-intro">
   <div class="barattolo-intro-content">
     <div class="barattolo-image-pila">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/barattolo-showcase.jpg">
+      <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/barattolo-showcase.jpg">
         <source src="1120.mp4" type="video/mp4">
       </video>
     </div>
