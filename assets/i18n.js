@@ -126,8 +126,8 @@
       'vision.strong': 'Inspiring the World with Gelato',
       'vision.body': 'To become the finest gelato brand in the world and inspire people with the taste of freshly-made artisan products.',
 
-      'gallery.title': 'Artisan Texture',
-      'gallery.subtitle': 'Beautiful variegated swirls showcase our authentic artisanal craftsmanship',
+      'gallery.title': 'Heritage-Inspired Texture',
+      'gallery.subtitle': 'Beautiful variegated swirls capture the authentic look and feel of our boutique gelato, crafted for a superior sensory experience',
 
       'locations.aria': 'Badiani around the world means gelato',
       'locations.top': 'Badiani Around The World',
@@ -288,8 +288,8 @@
       'vision.strong': 'Ispirare il mondo con il gelato',
       'vision.body': 'Diventare il miglior brand di gelato al mondo e ispirare le persone con il gusto di prodotti artigianali appena fatti.',
 
-      'gallery.title': 'Texture artigianale',
-      'gallery.subtitle': 'Variegature bellissime che raccontano la nostra lavorazione autenticamente artigianale',
+      'gallery.title': 'Texture ispirata alla tradizione',
+      'gallery.subtitle': 'Variegature bellissime catturano l’aspetto e la sensazione autentici del nostro gelato boutique, creato per un’esperienza sensoriale superiore',
 
       'locations.aria': 'Badiani nel mondo significa gelato',
       'locations.top': 'Badiani nel mondo',
@@ -450,8 +450,8 @@
       'vision.strong': 'Inspirar al mundo con helado',
       'vision.body': 'Convertirnos en la mejor marca de helado del mundo e inspirar a las personas con el sabor de productos artesanales recién hechos.',
 
-      'gallery.title': 'Textura artesanal',
-      'gallery.subtitle': 'Hermosos remolinos variegados muestran nuestra auténtica artesanía',
+      'gallery.title': 'Textura inspirada en la tradición',
+      'gallery.subtitle': 'Hermosos remolinos variegados capturan el aspecto y la sensación auténticos de nuestro gelato boutique, elaborado para una experiencia sensorial superior',
 
       'locations.aria': 'Badiani alrededor del mundo significa helado',
       'locations.top': 'Badiani alrededor del mundo',
@@ -612,8 +612,8 @@
       'vision.strong': 'Inspirer le monde avec le gelato',
       'vision.body': 'Devenir la meilleure marque de gelato au monde et inspirer les gens avec le goût de produits artisanaux fraîchement préparés.',
 
-      'gallery.title': 'Texture artisanale',
-      'gallery.subtitle': 'De magnifiques marbrures mettent en valeur notre savoir-faire artisanal authentique',
+      'gallery.title': 'Texture inspirée par la tradition',
+      'gallery.subtitle': 'De magnifiques marbrures capturent l’aspect et la sensation authentiques de notre gelato boutique, élaboré pour une expérience sensorielle supérieure',
 
       'locations.aria': 'Badiani dans le monde signifie gelato',
       'locations.top': 'Badiani dans le monde',
