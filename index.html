@@ -338,7 +338,10 @@
     .global-presence{ width:100%; padding:0; line-height:1; background:#1f4495 url('worldwide.webp?v=20251222') center/contain no-repeat; position:relative; aspect-ratio: 8 / 3; overflow:hidden; }
     /* Desktop: increase height by 20% and scale headline proportionally */
     @media (min-width: 901px){
-      .global-presence{ aspect-ratio: 8 / 2.52; }
+      .global-presence{
+        aspect-ratio: 8 / 2.52;
+        height: min(31.5vw, 50vh);
+      }
       .global-presence-headline .world-means-title .wmt-top{
         font-size:clamp(21.6px, 2.8vmin, 54.72px);
       }
