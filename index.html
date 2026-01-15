@@ -696,7 +696,7 @@
     /* Give the background video more vertical room on desktop so it's less cropped */
     @media (min-width: 901px){
       /* Prevent the section (and thus the video) from becoming huge in fullscreen on large monitors */
-      .why{ min-height: clamp(520px, 70vh, 720px); padding-bottom:clamp(70px, 10vh, 140px); }
+      .why{ min-height: clamp(520px, 70vh, 720px); padding-bottom:clamp(70px, 10vh, 140px); overflow:visible; }
     }
     /* Video background layer (replaces the previous image overlay) */
     .why .why-video-bg{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
@@ -724,7 +724,7 @@
     .benefits{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:25px; max-width:1150px; margin:0 auto; }
     /* Desktop: keep benefits inside the section so they don't get clipped/overlap the next block */
     @media (min-width: 901px){
-      .why .benefits{ margin-top:clamp(20px, 4vh, 40px); transform:none; }
+      .why .benefits{ margin-top:clamp(20px, 4vh, 40px); margin-bottom:clamp(10px, 3vh, 30px); transform:none; }
     }
     .benefit{ background:rgba(255,255,255,0.15); padding:30px 25px; border-radius:18px; border:2px solid rgba(255,255,255,0.2); transition:all 0.3s; -webkit-backdrop-filter:blur(5px); backdrop-filter:blur(5px); }
     .benefit:hover{ border-color:var(--badiani-pink); background:rgba(255,255,255,0.22); transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.3); }
