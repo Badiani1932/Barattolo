@@ -1382,12 +1382,13 @@
         --heading-square-size: 1em;
         font-size:clamp(18px, 6.5vw, 26px);
         padding-left:0;
-        display:flex;
+        display:inline-flex;
         flex-wrap:wrap;
         justify-content:center;
         align-items:center;
-        gap:4px 6px;
+        gap:6px 8px;
         text-align:center;
+        margin:0 auto;
       }
       .story-title::before{
         position:static;
@@ -1397,7 +1398,7 @@
         flex-shrink:0;
       }
       .story-title-main{ display:inline; }
-      .story-title-sub{ width:100%; display:block; font-size:clamp(14px, 4.5vw, 20px); }
+      .story-title-sub{ display:inline; width:auto; font-size:clamp(14px, 4.5vw, 20px); }
       .story-timeline{
         display:flex;
         gap:10px;
@@ -1425,15 +1426,12 @@
       .timeline-title{ font-size:clamp(15px, 4.2vw, 17px); margin-bottom:4px; }
       /* Compact by default: meno scroll verticale, espandibile con tap */
       .timeline-desc{
-        font-size:clamp(15px, 4vw, 17px);
-        line-height:1.4;
-        display:-webkit-box;
-        -webkit-box-orient:vertical;
-        -webkit-line-clamp:4;
-        line-clamp:4;
-        overflow:hidden;
+        font-size:clamp(13px, 3.6vw, 16px);
+        line-height:1.35;
+        display:block;
+        overflow:visible;
       }
-      .timeline-item.is-open .timeline-desc{ -webkit-line-clamp:unset; line-clamp:unset; }
+      .timeline-item.is-open .timeline-desc{ }
       .timeline-item{ cursor:pointer; }
       /* (overridden above) */
       
