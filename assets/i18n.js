@@ -1242,6 +1242,12 @@
     bindText('#contact .highlight', 'contact.highlight');
     bindText('#requestDistributionBtn', 'contact.cta');
     bindAttr('#requestDistributionBtn', 'aria-label', 'contact.ctaAria');
+    bindings.push(() => {
+      document.querySelectorAll('.barattolo-cta').forEach((el) => {
+        el.textContent = t('contact.cta');
+        el.setAttribute('aria-label', t('contact.ctaAria'));
+      });
+    });
 
     // Footer
     bindHTML('footer', 'footer.html', { year: new Date().getFullYear() });
