@@ -994,11 +994,11 @@
     
     @media(max-width:900px){ 
       /* Menu mobile */
-      .menu-toggle{display:none;} 
+      .menu-toggle{display:none !important;} 
       header{ flex-wrap:wrap; gap:6px; }
       
       .nav-menu{
-        position:static;
+        position:static !important;
         top:auto;
         right:auto;
         width:100%;
@@ -1483,8 +1483,8 @@
       
       .gallery-item{ width:20vw; height:20vw; max-width:85px; max-height:85px; border-width:2px; }
       
-      .nav-menu{ width:80vw; padding:16px 14px 16px; }
-      .nav-menu a{ font-size:13px; padding:12px 14px; }
+      .nav-menu{ width:100%; padding:0 0 6px; }
+      .nav-menu a{ font-size:12px; padding:10px 12px; }
       
       .card-img{ aspect-ratio: auto; }
       
@@ -1517,7 +1517,7 @@
       .barattolo-image-pila video{ min-height:auto; }
       .barattolo-text h2{font-size:5.5vw;}
       
-      .nav-menu{ width:85vw; }
+      .nav-menu{ width:100%; }
       .nav-menu a{ font-size:12px; padding:10px 12px; }
       
       .cta-btn{ padding:10px 20px; font-size:3.2vw; }
