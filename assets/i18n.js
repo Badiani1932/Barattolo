@@ -834,16 +834,24 @@
       .lang-switcher__item:hover{ background: rgba(240,103,166,0.9); }
       .lang-switcher__item[aria-checked="true"]{ background: rgba(255,255,255,0.10); }
 
-      /* Mobile slide-in menu: keep dropdown inside viewport */
+      /* Mobile: keep switcher compact and inline */
       @media (max-width: 900px){
-        .lang-switcher{ width:100%; }
-        .lang-switcher__btn{ width:100%; justify-content:flex-start; }
+        .lang-switcher{ width:auto; }
+        .lang-switcher__btn{
+          width:auto;
+          justify-content:center;
+          font-size:11px;
+          padding:8px 10px;
+          border-radius:20px;
+          letter-spacing:0.8px;
+        }
         .lang-switcher__menu{
-          position: static;
-          width:100%;
-          min-width:0;
-          margin-top:8px;
-          box-shadow:none;
+          position:absolute;
+          right:0;
+          top: calc(100% + 8px);
+          width:auto;
+          min-width:120px;
+          box-shadow:0 18px 50px rgba(0,0,0,0.35);
           border-radius:12px;
         }
       }

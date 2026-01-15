@@ -995,7 +995,8 @@
     @media(max-width:900px){ 
       /* Menu mobile */
       .menu-toggle{display:none !important;} 
-      header{ flex-wrap:wrap; gap:6px; }
+      header{ flex-wrap:nowrap; gap:8px; }
+      .logo-link{ flex:0 0 auto; }
       
       .nav-menu{
         position:static !important;
@@ -1007,21 +1008,23 @@
         max-height:none;
         background:transparent;
         flex-direction:row;
-        padding:0 0 6px;
+        padding:0 6px 6px;
         transition:none;
         box-shadow:none;
-        gap:10px;
+        gap:6px;
         align-items:center;
-        justify-content:center;
+        justify-content:flex-end;
         z-index:auto;
-        overflow:visible;
+        overflow-x:auto;
         border-radius:0;
-        flex-wrap:wrap;
+        flex-wrap:nowrap;
+        flex:1;
+        min-width:0;
       } 
       .nav-menu.active{right:auto;} 
       .nav-menu a{
-        font-size:12px;
-        padding:10px 12px;
+        font-size:11px;
+        padding:8px 10px;
         width:auto;
         border-top:none;
         background:rgba(255,255,255,0.08);
@@ -1029,6 +1032,8 @@
         text-align:center;
         letter-spacing:1px;
       }
+      .nav-menu::-webkit-scrollbar{ display:none; }
+      .nav-menu{ scrollbar-width:none; }
 
       .menu-overlay{ display:none !important; }
 
@@ -1488,8 +1493,8 @@
       
       .gallery-item{ width:20vw; height:20vw; max-width:85px; max-height:85px; border-width:2px; }
       
-      .nav-menu{ width:100%; padding:0 0 6px; }
-      .nav-menu a{ font-size:12px; padding:10px 12px; }
+      .nav-menu{ width:100%; padding:0 6px 6px; gap:6px; }
+      .nav-menu a{ font-size:11px; padding:8px 10px; }
       
       .card-img{ aspect-ratio: auto; }
       
@@ -1522,8 +1527,8 @@
       .barattolo-image-pila video{ min-height:auto; }
       .barattolo-text h2{font-size:5.5vw;}
       
-      .nav-menu{ width:100%; }
-      .nav-menu a{ font-size:12px; padding:10px 12px; }
+      .nav-menu{ width:100%; padding:0 6px 6px; gap:6px; }
+      .nav-menu a{ font-size:10px; padding:7px 9px; letter-spacing:0.8px; }
       
       .cta-btn{ padding:10px 20px; font-size:3.2vw; }
       
