@@ -674,18 +674,20 @@
     .card-img::before{
       content: "ⓘ";
       position: absolute;
-      bottom: 14px;
-      right: 14px;
+      bottom: 25px;
+      right: 25px;
       color: rgba(88,89,91,0.6);
       font-size: 22px;
+      line-height: 1;
+      scale: 1.15;
       z-index: 10;
       pointer-events: none;
       text-shadow: 0 1px 3px rgba(255,255,255,0.9);
     }
-    /* Hide on desktop where hover works */
-    @media (hover:hover) and (pointer:fine){
+    /* Hide on desktop where hover works - DISABLED as requested */
+    /* @media (hover:hover) and (pointer:fine){
       .card-img::before{ display: none; }
-    }
+    } */
     .card-img .card-btn{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%) translateY(50px); background:rgba(30,57,141,0.95); color:#fff; padding:12px 28px; border-radius:25px; font-size:15px; letter-spacing:1.2px; text-transform:uppercase; opacity:0; transition:all 0.35s ease; pointer-events:none; font-weight:600; box-shadow:0 6px 22px rgba(30,57,141,0.35); text-decoration:none; display:inline-block; }
     .card-img:hover .card-btn{ transform:translateX(-50%) translateY(0); opacity:1; }
     @media (hover: none) and (pointer: coarse) {
