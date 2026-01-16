@@ -247,6 +247,8 @@
       --section-gap-sm: 8px;
       --section-gap-md: 12px;
       --section-gap-lg: 16px;
+      --section-divider-color: rgba(240,103,166,0.4);
+      --section-divider-width: 1px;
       /* Safe area insets for notched devices (iPhone X+) */
       --safe-area-top: env(safe-area-inset-top, 0px);
       --safe-area-bottom: env(safe-area-inset-bottom, 0px);
@@ -303,13 +305,13 @@
 
     /* Linee divisorie rosa tra le sezioni */
     section:not(#hero) {
-      border-top: 2px solid rgba(240,103,166,0.4);
+      border-top: var(--section-divider-width) solid var(--section-divider-color);
+      border-bottom: var(--section-divider-width) solid var(--section-divider-color);
     }
-    section#mission {
-      border-top: none;
-    }
-    section#gallery {
-      border-top: none;
+    section#mission,
+    section#gallery{
+      border-top: var(--section-divider-width) solid var(--section-divider-color);
+      border-bottom: var(--section-divider-width) solid var(--section-divider-color);
     }
 
     /* HERO - TITOLO PIÃ™ IN ALTO */
@@ -626,8 +628,8 @@
       position:relative; 
       overflow:hidden; 
       color:#fff;
-      border-top:2px solid rgba(240,103,166,0.6);
-      border-bottom:2px solid rgba(240,103,166,0.6);
+      border-top:var(--section-divider-width) solid var(--section-divider-color);
+      border-bottom:var(--section-divider-width) solid var(--section-divider-color);
     }
     .barattolo-intro::before{ 
       content:""; 
@@ -827,7 +829,20 @@
     }
     .card-description br{ display:none; }
     .card-features{ list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    .card-features li{ font-size:13.5px; padding:10px 12px; background:var(--bg-light); border-radius:10px; display:flex; align-items:center; gap:8px; font-weight:400; line-height:1.2; }
+    .card-features li{
+      font-size:13.5px;
+      padding:10px 12px;
+      background:var(--bg-light);
+      border-radius:10px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      font-weight:400;
+      line-height:1.2;
+      text-align:center;
+    }
     /* use Unicode escape for checkmark to avoid encoding issues */
     .card-features li::before{ content:"\2713"; color:var(--badiani-pink); font-size:18px; font-weight:700; margin-right:6px; display:inline-block; }
 
@@ -1269,7 +1284,7 @@
       .barattolo-intro{ padding:0; margin:0; background:transparent !important; }
       .barattolo-intro::before{ display:none !important; }
       .barattolo-intro-content{ grid-template-columns:1fr; gap:0; padding:0; margin:0; background:transparent; } 
-      .barattolo-image-pila{ max-width:none; width:100%; margin:0; padding:0; display:flex; align-items:flex-start; line-height:0; font-size:0; min-width:0; overflow:hidden; background:transparent !important; height:auto; }
+      .barattolo-image-pila{ max-width:none; width:100%; margin:0; padding:0; display:flex; align-items:flex-start; line-height:0; font-size:0; min-width:0; overflow:hidden; background:transparent !important; height:auto; border-bottom: var(--section-divider-width) solid var(--section-divider-color); }
       .barattolo-image-pila::after{ display:none !important; }
       .barattolo-image-pila video{ width:100%; height:auto; min-height:0; max-height:none; object-fit:contain; object-position:center; border-radius:0; box-shadow:none; display:block; margin:0; padding:0; background:#000; } 
       .barattolo-image-pila video::-webkit-media-controls-start-playback-button,
@@ -1364,7 +1379,14 @@
       .percent-boost{ font-size:1.06em; }
       .card-sub{ font-size:clamp(9.9px, 2.79vw, 11.7px); letter-spacing:0.6px; }
       .card-features{ gap:4px; }
-      .card-features li{ font-size:clamp(10.35px, 2.79vw, 12.6px); padding:6px 8px; line-height:1.2; }
+      .card-features li{
+        font-size:clamp(10.35px, 2.79vw, 12.6px);
+        padding:6px 8px;
+        line-height:1.2;
+        justify-content:center;
+        text-align:center;
+        gap:5px;
+      }
 
       /* Mobile: never scale cards to avoid overlap */
       #products .card,
