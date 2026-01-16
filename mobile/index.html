@@ -278,10 +278,13 @@
     .story-header{ text-align:center; margin-bottom:50px; }
     .story-title{
       --heading-square-size: 1em;
-      --heading-square-offset: 0.38em;
+      --heading-square-offset: 0.4em;
       position:relative;
-      display:inline-block;
-      padding-left:calc(var(--heading-square-size) + var(--heading-square-offset));
+      display:inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--heading-square-offset);
+      padding-left:0;
       font-size:54px;
       letter-spacing:1px;
       text-transform:uppercase;
@@ -291,14 +294,12 @@
     }
     .story-title::before{
       content:'';
-      position:absolute;
-      left:0;
-      top:0;
-      transform:translate(-50%, -50%);
+      position:static;
       width:var(--heading-square-size);
       height:var(--heading-square-size);
       background:var(--badiani-pink);
       border-radius:3px;
+      flex-shrink: 0;
     }
     .story-lead{ font-size:22px; margin-bottom:40px; line-height:1.9; max-width:900px; margin-left:auto; margin-right:auto; font-weight:300; }
     .highlight-pink{ background:var(--badiani-pink); color:#fff; padding:3px 10px; font-family:'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif; font-weight:500; border-radius:3px; white-space:nowrap; text-transform:uppercase; font-variant-caps:normal; }
@@ -345,10 +346,13 @@
     .heritage > *{ position:relative; z-index:1; }
     .heritage h2{
       --heading-square-size: 1em;
-      --heading-square-offset: 0.38em;
+      --heading-square-offset: 0.4em;
       position:relative;
-      display:inline-block;
-      padding-left:calc(var(--heading-square-size) + var(--heading-square-offset));
+      display:inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--heading-square-offset);
+      padding-left:0;
       font-size:54px;
       letter-spacing:1px;
       text-transform:uppercase;
@@ -359,15 +363,12 @@
     }
     .heritage h2::before{
       content:'';
-      position:absolute;
-      left:0;
-      /* Center the square on the text block (using font-size), not on the line-box (which can include extra leading). */
-      top:0.5em;
-      transform:translate(-50%, -50%);
+      position:static;
       width:var(--heading-square-size);
       height:var(--heading-square-size);
       background:var(--badiani-blue);
       border-radius:3px;
+      flex-shrink: 0;
     }
     .heritage-intro{ max-width:950px; margin:0 auto 45px; font-size:20px; line-height:1.9; font-weight:300; }
     .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; max-width:1150px; margin:0 auto; }
@@ -589,10 +590,13 @@
     .products > *{ position:relative; z-index:1; }
     .section-title{
       --heading-square-size: 1em;
-      --heading-square-offset: 0.38em;
+      --heading-square-offset: 0.4em;
       position:relative;
-      display:inline-block;
-      padding-left:calc(var(--heading-square-size) + var(--heading-square-offset));
+      display:inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--heading-square-offset);
+      padding-left:0;
       font-size:54px;
       letter-spacing:1px;
       text-transform:uppercase;
@@ -603,14 +607,12 @@
     }
     .section-title::before{
       content:'';
-      position:absolute;
-      left:0;
-      top:0;
-      transform:translate(-50%, -50%);
+      position:static;
       width:var(--heading-square-size);
       height:var(--heading-square-size);
       background:var(--badiani-cyan);
       border-radius:3px;
+      flex-shrink: 0;
     }
     .section-title span{ color:var(--badiani-pink); font-style:normal; }
 .section-subtitle{ font-size:clamp(16px, 4.2vw, 20px); padding:0 15px; margin-bottom:30px; text-align:center; }
@@ -936,10 +938,13 @@
     .contact > *{ position:relative; z-index:1; }
     .contact h2{
       --heading-square-size: 1em;
-      --heading-square-offset: 0.38em;
+      --heading-square-offset: 0.4em;
       position:relative;
-      display:inline-block;
-      padding-left:calc(var(--heading-square-size) + var(--heading-square-offset));
+      display:inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--heading-square-offset);
+      padding-left:0;
       font-size:54px;
       letter-spacing:1px;
       text-transform:uppercase;
@@ -950,14 +955,12 @@
     }
     .contact h2::before{
       content:'';
-      position:absolute;
-      left:0;
-      top:0.5em;
-      transform:translate(-50%, -50%);
+      position:static;
       width:var(--heading-square-size);
       height:var(--heading-square-size);
       background:var(--badiani-pink);
       border-radius:3px;
+      flex-shrink: 0;
     }
     .contact p{ font-size:19px; margin-bottom:12px; font-weight:300; }
     .contact p.highlight{ color:var(--badiani-pink); font-weight:600; font-size:28px; }
@@ -1179,13 +1182,22 @@
         --heading-square-offset: 0.4em;
         font-size:clamp(20px, 6.2vw, 26px);
         letter-spacing:0.5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4em;
+        padding-left: 0 !important;
       }
+      /* Remove old padding overrides */
       .section-title{
-        padding-left:calc(var(--heading-square-size, 0.9em) + var(--heading-square-offset, 0.38em));
+        padding-left:0;
       }
       .section-title::before{
+        position: static;
+        transform: none;
         width:var(--heading-square-size, 0.9em);
         height:var(--heading-square-size, 0.9em);
+        flex-shrink: 0;
       }
       .section-subtitle{ font-size:3.5vw; padding:0 15px; }
       
@@ -1327,7 +1339,14 @@
       /* Contact proporzionato */
       .contact{ padding:40px 15px; }
       .contact h2{
-        padding-left:calc(var(--heading-square-size, 0.9em) + var(--heading-square-offset, 0.38em));
+        padding-left:0;
+      }
+      .contact h2::before{
+        position: static;
+        transform: none;
+        width:var(--heading-square-size, 0.9em);
+        height:var(--heading-square-size, 0.9em);
+        flex-shrink: 0;
       }
       .contact p{ font-size:4vw; padding:0 10px; }
       .contact p.highlight{ font-size:4.5vw; }
@@ -1348,11 +1367,14 @@
       .heritage h2{
         /* Keep square size aligned with other headings */
         margin-bottom:8px;
-        padding-left:calc(var(--heading-square-size, 0.9em) + var(--heading-square-offset, 0.38em));
+        padding-left:0;
       }
       .heritage h2::before{
+        position: static;
+        transform: none;
         width:var(--heading-square-size, 0.9em);
         height:var(--heading-square-size, 0.9em);
+        flex-shrink: 0;
       }
       .heritage p{ font-size:clamp(15px, 4vw, 17px); line-height:1.5; }
       .story-lead{ font-size:clamp(15px, 4.2vw, 17px); line-height:1.5; padding:0 6px; }
@@ -1417,12 +1439,12 @@
         height:var(--heading-square-size, 1em);
         flex-shrink:0;
       }
-      .story-title-main{ display:inline; }
+      .story-title-main{ display:inline; font-size:1.3em; }
       .story-title-sub{
         display:block;
         flex-basis:100%;
         width:100%;
-        font-size:inherit;
+        font-size:1em;
         line-height:1.05;
         margin-top:2px;
       }
@@ -1761,7 +1783,7 @@
 <section id="story" class="buontalenti-story">
   <div class="story-inner">
     <div class="story-header">
-      <h2 class="story-title"><span class="story-title-main">Buontalenti: la crema</span> <span class="story-title-sub">che ha fatto la storia</span></h2>
+      <h2 class="story-title"><span class="story-title-main">Buontalenti:</span><span class="story-title-sub">la crema che ha fatto la storia</span></h2>
       <p class="story-lead">
         In the 1960s, in Florence, Badiani dedicated a special flavour to <span class="highlight-pink">Bernardo Buontalenti</span>, the Renaissance architect to whom tradition attributes the birth of <span class="highlight-pink">gelato</span> in the 16th century.
       </p>
