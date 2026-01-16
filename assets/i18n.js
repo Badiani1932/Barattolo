@@ -75,6 +75,7 @@
       'story.tl.legacy': 'The Legacy',
       'story.tl.legacyDesc': 'Il Barattolo Gelato brings this iconic Florentine flavour to premium retail worldwide.',
       'story.tl.legacyDescHtml': 'Il Barattolo Gelato brings this iconic Florentine flavour to <span class="highlight-pink">premium retail</span> worldwide.',
+      'story.tl.year.today': 'TODAY',
 
       'heritage.title': 'A Legacy of Excellence',
       'heritage.intro': "Born in Florence in 1932, Badiani is one of the world's most prestigious gelato producers. From the birthplace of gelato, we have built an international presence spanning five countries across three continents.",
@@ -239,6 +240,7 @@
       'story.tl.legacy': 'L’eredità',
       'story.tl.legacyDesc': 'Il Barattolo Gelato porta questo iconico gusto fiorentino nel retail premium in tutto il mondo.',
       'story.tl.legacyDescHtml': 'Il Barattolo Gelato porta questo iconico gusto fiorentino nel <span class="highlight-pink">retail premium</span> in tutto il mondo.',
+      'story.tl.year.today': 'OGGI',
 
       'heritage.title': 'Un’eredità di eccellenza',
       'heritage.intro': 'Nata a Firenze nel 1932, Badiani è tra i produttori di gelato più prestigiosi al mondo. Dalla città in cui è nato il gelato, abbiamo costruito una presenza internazionale in cinque paesi su tre continenti.',
@@ -403,6 +405,7 @@
       'story.tl.legacy': 'El legado',
       'story.tl.legacyDesc': 'Il Barattolo Gelato lleva este icónico sabor florentino al retail premium en todo el mundo.',
       'story.tl.legacyDescHtml': 'Il Barattolo Gelato lleva este icónico sabor florentino al <span class="highlight-pink">retail premium</span> en todo el mundo.',
+      'story.tl.year.today': 'HOY',
 
       'heritage.title': 'Un legado de excelencia',
       'heritage.intro': 'Nacida en Florencia en 1932, Badiani es uno de los productores de helado más prestigiosos del mundo. Desde la cuna del helado, hemos construido una presencia internacional en cinco países de tres continentes.',
@@ -567,6 +570,7 @@
       'story.tl.legacy': 'L’héritage',
       'story.tl.legacyDesc': 'Il Barattolo Gelato apporte ce parfum florentin iconique au retail premium dans le monde entier.',
       'story.tl.legacyDescHtml': 'Il Barattolo Gelato apporte ce parfum florentin iconique au <span class="highlight-pink">retail premium</span> dans le monde entier.',
+      'story.tl.year.today': "AUJOURD'HUI",
 
       'heritage.title': 'Un héritage d’excellence',
       'heritage.intro': 'Née à Florence en 1932, Badiani est l’un des producteurs de gelato les plus prestigieux au monde. Depuis le berceau du gelato, nous avons bâti une présence internationale dans cinq pays sur trois continents.',
