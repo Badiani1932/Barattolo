@@ -670,12 +670,12 @@
     }
     /* overlay button: use a real element instead of pseudo-element so it's clickable */
     .card-img::after{ display:none; }
-    /* Mobile: Info icon at bottom-left of photo to indicate specs on tap */
+    /* Mobile: Info icon at bottom-right of photo to indicate specs on tap */
     .card-img::before{
       content: "ⓘ";
       position: absolute;
-      bottom: 12px;
-      left: 12px;
+      bottom: 14px;
+      right: 14px;
       color: rgba(88,89,91,0.6);
       font-size: 22px;
       z-index: 10;
