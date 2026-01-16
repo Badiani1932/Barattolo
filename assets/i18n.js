@@ -781,9 +781,9 @@
     const style = document.createElement('style');
     style.id = 'badiani-lang-switcher-styles';
     style.textContent = `
-      .lang-switcher{ position:relative; display:inline-flex; align-items:center; }
+      .lang-switcher{ position:relative; display:-webkit-inline-flex; display:inline-flex; -webkit-align-items:center; align-items:center; }
       .lang-switcher__btn{
-        appearance:none; -webkit-appearance:none;
+        -webkit-appearance:none; -moz-appearance:none; appearance:none;
         border:none;
         background:rgba(255,255,255,0.05);
         color:#fff;
@@ -795,12 +795,13 @@
         font-weight:600;
         font-family:inherit;
         line-height:1.1;
-        display:inline-flex;
-        align-items:center;
+        display:-webkit-inline-flex; display:inline-flex;
+        -webkit-align-items:center; align-items:center;
         gap:8px;
         cursor:pointer;
+        -webkit-tap-highlight-color:transparent;
       }
-      .lang-switcher__btn:hover{ background:rgba(240,103,166,0.92); transform:translateY(-2px); }
+      .lang-switcher__btn:hover{ background:rgba(240,103,166,0.92); -webkit-transform:translateY(-2px); transform:translateY(-2px); }
       .lang-switcher__btn:focus, .lang-switcher__btn:focus-visible{ outline:none; }
       .lang-switcher__btn .globe{ font-size:0.95em; opacity:0.95; }
 
@@ -862,9 +863,13 @@
         .lang-switcher__btn,
         .lang-switcher__btn:hover,
         .lang-switcher__btn:active,
-        .lang-switcher__btn:focus,
+        .lang-switcher__btn:focus{
+          transform:none !important;
+          background:rgba(255,255,255,0.05);
+        }
         .lang-switcher__btn[aria-expanded="true"]{
           transform:none !important;
+          background:rgba(240,103,166,0.92) !important;
         }
       }
 
@@ -872,9 +877,13 @@
       @media (max-width: 900px){
         .lang-switcher__btn:hover,
         .lang-switcher__btn:active,
-        .lang-switcher__btn:focus,
+        .lang-switcher__btn:focus{
+          transform:none !important;
+          background:rgba(255,255,255,0.05);
+        }
         .lang-switcher__btn[aria-expanded="true"]{
           transform:none !important;
+          background:rgba(240,103,166,0.92) !important;
         }
       }
     `;
