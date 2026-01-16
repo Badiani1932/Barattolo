@@ -1300,6 +1300,20 @@
     // Footer
     bindHTML('footer', 'footer.html', { year: new Date().getFullYear() });
 
+    // Generic data-i18n hooks (text/HTML) for any future elements
+    bindings.push(() => {
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (!key) return;
+        el.textContent = t(key);
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-html');
+        if (!key) return;
+        el.innerHTML = t(key);
+      });
+    });
+
     // Apply (run) bindings now
     const run = () => {
       // Recreate bindings list each time to avoid duplicates

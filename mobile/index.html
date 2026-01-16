@@ -946,7 +946,7 @@
     @media(max-width:900px){ 
       /* Menu mobile */
       .menu-toggle{display:none !important;} 
-      header{ flex-wrap:nowrap; gap:6px; }
+      header{ flex-wrap:nowrap; gap:6px; overflow:visible; }
       .logo-link{ flex:0 0 auto; }
       
       .nav-menu{
@@ -973,7 +973,7 @@
         min-width:0;
         scroll-padding-left:10px;
         margin-left:auto;
-        transform:translateY(5%);
+        padding-top:4px;
       } 
       .nav-menu.active{right:auto;} 
       .nav-menu a{
@@ -988,6 +988,9 @@
         border-radius:20px;
         text-align:center;
         letter-spacing:1px;
+      }
+      .nav-menu a:hover{
+        transform:none;
       }
       .nav-menu::-webkit-scrollbar{ display:none; }
       .nav-menu{ scrollbar-width:none; }
@@ -1745,8 +1748,8 @@
 
 <section id="mission" class="mission-vision">
   <nav class="mv-tabs" aria-label="Mission and Vision tabs">
-    <button class="mv-tab is-active" data-target="mission-box" aria-selected="true">Mission</button>
-    <button class="mv-tab" data-target="vision-box" aria-selected="false">Vision</button>
+    <button class="mv-tab is-active" data-target="mission-box" aria-selected="true" data-i18n="mission.tab.mission">Mission</button>
+    <button class="mv-tab" data-target="vision-box" aria-selected="false" data-i18n="mission.tab.vision">Vision</button>
   </nav>
   <div class="mission-box is-active">
     <h2>Our Mission</h2>
