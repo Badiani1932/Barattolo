@@ -145,6 +145,7 @@
       font-size: var(--section-title-size) !important;
       line-height: 1.1;
       letter-spacing: 0.6px;
+      margin-bottom: var(--section-gap-md);
     }
 
     /* Unified descriptive copy size across sections */
@@ -160,6 +161,47 @@
     .contact p{
       font-size: var(--section-desc-size) !important;
       line-height: var(--section-desc-line) !important;
+    }
+
+    /* Consistent vertical gaps between section elements */
+    .section-subtitle,
+    .gallery-subtitle,
+    .story-lead,
+    .heritage-intro,
+    .contact p{
+      margin-bottom: var(--section-gap-lg) !important;
+    }
+    .barattolo-text p{
+      margin-bottom: var(--section-gap-md) !important;
+    }
+    .timeline-title,
+    .card-name{
+      margin-bottom: var(--section-gap-sm) !important;
+    }
+    .card-description{
+      margin-bottom: var(--section-gap-md) !important;
+    }
+    .heritage h2,
+    .barattolo-text h2,
+    .mission-box h2,
+    .vision-box h2,
+    .why h2,
+    .gallery h2{
+      margin-bottom: var(--section-gap-md) !important;
+    }
+    .mission-box p,
+    .vision-box p,
+    .benefit h3,
+    .benefit p,
+    .heritage-intro,
+    .contact p{
+      margin-bottom: var(--section-gap-sm) !important;
+    }
+    .mission-box p:last-child,
+    .vision-box p:last-child,
+    .benefit p:last-child,
+    .contact p:last-child{
+      margin-bottom: 0 !important;
     }
 
     /* If you need to target specific small-text selectors later,
@@ -202,6 +244,9 @@
       --section-title-size: clamp(22px, 6.2vw, 30px);
       --section-desc-size: clamp(14px, 4.2vw, 18px);
       --section-desc-line: 1.55;
+      --section-gap-sm: 8px;
+      --section-gap-md: 12px;
+      --section-gap-lg: 16px;
       /* Safe area insets for notched devices (iPhone X+) */
       --safe-area-top: env(safe-area-inset-top, 0px);
       --safe-area-bottom: env(safe-area-inset-bottom, 0px);
@@ -382,11 +427,27 @@
       font-weight:500;
       text-transform:uppercase;
     }
+    .mission-box p strong,
+    .vision-box p strong{
+      display:block;
+      font-size: calc(var(--section-desc-size) + 2px);
+      letter-spacing:0.6px;
+      margin-bottom: var(--section-gap-sm);
+      line-height:1.25;
+    }
     .mission-box::before{ background-image:url('mission.webp'); }
     .vision-box::before{ background-image:url('vision.webp'); }
     .mission-box > *, .vision-box > *{ position:relative; z-index:1; }
     .mission-box h2, .vision-box h2{ font-size:48px; letter-spacing:3px; text-transform:uppercase; margin-bottom:25px; font-weight:700; text-shadow:2px 2px 8px rgba(0,0,0,0.3); }
-    .mission-box p, .vision-box p{ font-size:24px; line-height:1.9; font-weight:300; text-shadow:1px 1px 4px rgba(0,0,0,0.3); }
+    .mission-box p, .vision-box p{
+      font-size: var(--section-desc-size);
+      line-height: var(--section-desc-line);
+      font-weight:300;
+      text-shadow:1px 1px 4px rgba(0,0,0,0.3);
+      margin-bottom: var(--section-gap-sm);
+    }
+    .mission-box p:last-child,
+    .vision-box p:last-child{ margin-bottom: 0; }
 
     .heritage{ padding:var(--space-xl) 20px; text-align:center; }
     .heritage > *{ position:relative; z-index:1; }
@@ -973,7 +1034,7 @@
     .contact h2::before{ display:none; }
     .contact p{ font-size:19px; margin-bottom:12px; font-weight:300; }
     .contact p.highlight{ color:var(--badiani-pink); font-weight:600; font-size:clamp(12px, 3.6vw, 16px); line-height:1.2; white-space:nowrap; }
-    .cta-btn{ display:inline-block; margin-top:30px; padding:20px 60px; background:var(--badiani-pink); color:#fff; text-decoration:none; border-radius:35px; font-size:var(--cta-font-size); font-weight:600; letter-spacing:var(--cta-letter-spacing); text-transform:uppercase; -webkit-transition:all 0.3s; transition:all 0.3s; box-shadow:0 8px 25px rgba(240,103,166,0.3); }
+    .cta-btn{ display:inline-block; margin-top:16px; padding:20px 60px; background:var(--badiani-pink); color:#fff; text-decoration:none; border-radius:35px; font-size:var(--cta-font-size); font-weight:600; letter-spacing:var(--cta-letter-spacing); text-transform:uppercase; -webkit-transition:all 0.3s; transition:all 0.3s; box-shadow:0 8px 25px rgba(240,103,166,0.3); }
     .cta-btn:hover{ background:var(--badiani-blue); -webkit-transform:translateY(-3px); transform:translateY(-3px); box-shadow:0 12px 35px rgba(30,57,141,0.4); }
 
     footer{ background:#333; color:#fff; padding:36px; padding-bottom: calc(36px + var(--safe-area-bottom)); text-align:center; font-size:16px; font-weight:300; }
@@ -1234,7 +1295,7 @@
         max-width:240px;
         background:rgba(0,0,0,0.2);
         position:absolute;
-        top:20px;
+        top:28px;
         left:50%;
         transform:translateX(-50%);
         z-index:10;
@@ -1281,7 +1342,8 @@
       }
       .mission-box.is-active, .vision-box.is-active{ display:flex; }
       .mission-box h2, .vision-box h2{ font-size:clamp(16px, 5vw, 20px); margin-bottom:8px; }
-      .mission-box p, .vision-box p{ font-size:clamp(16px, 4.2vw, 18px); line-height:1.5; }
+      .mission-box p, .vision-box p{ font-size: var(--section-desc-size); line-height: var(--section-desc-line); margin-bottom: var(--section-gap-sm); }
+      .mission-box p:last-child, .vision-box p:last-child{ margin-bottom:0; }
       
       /* Products proporzionato - ultra compact */
       .products{ padding:20px 8px; }
