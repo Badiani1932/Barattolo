@@ -116,6 +116,52 @@
       letter-spacing: 0.6px;
     }
 
+    /* Ensure heading squares are fully removed (override any lingering rules) */
+    .section-title::before,
+    .story-title::before,
+    .heritage h2::before,
+    .contact h2::before{
+      content: none !important;
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    .section-title,
+    .story-title,
+    .heritage h2,
+    .contact h2{
+      padding-left: 0 !important;
+      text-align: center;
+    }
+
+    /* Unified section headings (larger than descriptive text) */
+    .section-title,
+    .story-title,
+    .heritage h2,
+    .gallery h2,
+    .why h2,
+    .contact h2,
+    .barattolo-text h2{
+      font-size: var(--section-title-size) !important;
+      line-height: 1.1;
+      letter-spacing: 0.6px;
+    }
+
+    /* Unified descriptive copy size across sections */
+    .section-subtitle,
+    .story-lead,
+    .timeline-desc,
+    .heritage-intro,
+    .barattolo-text p,
+    .card-description,
+    .card-features li,
+    .gallery-subtitle,
+    .benefit p,
+    .contact p{
+      font-size: var(--section-desc-size) !important;
+      line-height: var(--section-desc-line) !important;
+    }
+
     /* If you need to target specific small-text selectors later,
        they will inherit SuperGroteskA from body and can use
        the `.sga-lower` utility for lowercase transform. */
@@ -152,6 +198,10 @@
       --info-offset: 20px;
       --cta-font-size: 16px;
       --cta-letter-spacing: 2px;
+      /* Unified mobile typography */
+      --section-title-size: clamp(22px, 6.2vw, 30px);
+      --section-desc-size: clamp(14px, 4.2vw, 18px);
+      --section-desc-line: 1.55;
       /* Safe area insets for notched devices (iPhone X+) */
       --safe-area-top: env(safe-area-inset-top, 0px);
       --safe-area-bottom: env(safe-area-inset-bottom, 0px);
@@ -285,29 +335,18 @@
     .story-inner{ max-width:1200px; margin:0 auto; position:relative; z-index:1; }
     .story-header{ text-align:center; margin-bottom:50px; }
     .story-title{
-      --heading-square-size: 1em;
-      --heading-square-offset: 0.38em;
       position:relative;
       display:inline-block;
-      padding-left:calc(var(--heading-square-size) + var(--heading-square-offset));
+      padding-left:0;
       font-size:54px;
       letter-spacing:1px;
       text-transform:uppercase;
       color:var(--badiani-blue);
       margin-bottom:25px;
       font-weight:700;
+      text-align:center;
     }
-    .story-title::before{
-      content:'';
-      position:absolute;
-      left:0;
-      top:0.5em;
-      transform:translate(-50%, -50%);
-      width:var(--heading-square-size);
-      height:var(--heading-square-size);
-      background:var(--badiani-pink);
-      border-radius:3px;
-    }
+    .story-title::before{ display:none; }
     .story-lead{ font-size:22px; margin-bottom:40px; line-height:1.9; max-width:900px; margin-left:auto; margin-right:auto; font-weight:300; }
     .highlight-pink{ background:var(--badiani-pink); color:#fff; padding:3px 10px; font-family:'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif; font-weight:500; border-radius:3px; white-space:nowrap; text-transform:uppercase; font-variant-caps:normal; }
 
@@ -352,11 +391,9 @@
     .heritage{ padding:var(--space-xl) 20px; text-align:center; }
     .heritage > *{ position:relative; z-index:1; }
     .heritage h2{
-      --heading-square-size: 1em;
-      --heading-square-offset: 0.38em;
       position:relative;
       display:inline-block;
-      padding-left:calc(var(--heading-square-size) + var(--heading-square-offset));
+      padding-left:0;
       font-size:54px;
       letter-spacing:1px;
       text-transform:uppercase;
@@ -364,19 +401,9 @@
       margin-bottom:25px;
       font-weight:700;
       line-height:1;
+      text-align:center;
     }
-    .heritage h2::before{
-      content:'';
-      position:absolute;
-      left:0;
-      /* Center the square on the text block (using font-size), not on the line-box (which can include extra leading). */
-      top:0.5em;
-      transform:translate(-50%, -50%);
-      width:var(--heading-square-size);
-      height:var(--heading-square-size);
-      background:var(--badiani-blue);
-      border-radius:3px;
-    }
+    .heritage h2::before{ display:none; }
     .heritage-intro{ max-width:950px; margin:0 auto 45px; font-size:20px; line-height:1.9; font-weight:300; }
     .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; max-width:1150px; margin:0 auto; }
     .stat{ background:var(--badiani-blue); color:#fff; padding:25px 50px; border-radius:20px; transition:transform 0.3s; min-height:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
@@ -596,49 +623,30 @@
     .products{ padding:var(--space-xxl) 20px; }
     .products > *{ position:relative; z-index:1; }
     .section-title{
-      --heading-square-size: 1em;
-      --heading-square-offset: 0.38em;
       position:relative;
-      display:inline-block;
-      padding-left:calc(var(--heading-square-size) + var(--heading-square-offset));
+      display:block;
+      padding-left:0;
       font-size:54px;
       letter-spacing:1px;
       text-transform:uppercase;
       color:var(--badiani-blue);
-      margin-bottom:25px;
+      margin:0 auto 25px;
       text-align:center;
       font-weight:700;
     }
-    .section-title::before{
-      content:'';
-      position:absolute;
-      left:0;
-      top:0.5em;
-      transform:translate(-50%, -50%);
-      width:var(--heading-square-size);
-      height:var(--heading-square-size);
-      background:var(--badiani-cyan);
-      border-radius:3px;
-    }
+    .section-title::before{ display:none; }
     .section-title span{ color:var(--badiani-pink); font-style:normal; }
 .section-subtitle{ font-size:clamp(16px, 4.2vw, 20px); padding:0 15px; margin-bottom:30px; text-align:center; }
 
     /* Center the Premium Collection title and square as a single block */
     .products .section-title{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:14px;
-      padding-left:0;
-      width:fit-content;
+      display:block;
+      width:auto;
       margin:0 auto 25px;
+      padding-left:0;
+      text-align:center;
     }
-    .products .section-title::before{
-      position:static;
-      transform:none;
-      display:inline-block;
-      flex-shrink:0;
-    }
+    .products .section-title::before{ display:none; }
      /* UPDATED: Tab quadrati 380px - FORZATO con padding */
      .products-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:50px; max-width:1350px; margin:0 auto; }
     .card{ background:#fff; border-radius:25px; overflow:hidden; box-shadow:0 15px 50px rgba(0,0,0,0.15); transition:all 0.4s; position:relative; }
@@ -942,11 +950,9 @@
     .contact{ padding:var(--space-xl) 20px; text-align:center; }
     .contact > *{ position:relative; z-index:1; }
     .contact h2{
-      --heading-square-size: 1em;
-      --heading-square-offset: 0.38em;
       position:relative;
       display:inline-block;
-      padding-left:calc(var(--heading-square-size) + var(--heading-square-offset));
+      padding-left:0;
       font-size:54px;
       letter-spacing:1px;
       text-transform:uppercase;
@@ -954,18 +960,9 @@
       margin-bottom:25px;
       font-weight:700;
       line-height:1;
+      text-align:center;
     }
-    .contact h2::before{
-      content:'';
-      position:absolute;
-      left:0;
-      top:0.5em;
-      transform:translate(-50%, -50%);
-      width:var(--heading-square-size);
-      height:var(--heading-square-size);
-      background:var(--badiani-pink);
-      border-radius:3px;
-    }
+    .contact h2::before{ display:none; }
     .contact p{ font-size:19px; margin-bottom:12px; font-weight:300; }
     .contact p.highlight{ color:var(--badiani-pink); font-weight:600; font-size:28px; }
     .cta-btn{ display:inline-block; margin-top:30px; padding:20px 60px; background:var(--badiani-pink); color:#fff; text-decoration:none; border-radius:35px; font-size:var(--cta-font-size); font-weight:600; letter-spacing:var(--cta-letter-spacing); text-transform:uppercase; -webkit-transition:all 0.3s; transition:all 0.3s; box-shadow:0 8px 25px rgba(240,103,166,0.3); }
@@ -1182,18 +1179,12 @@
       .story-title,
       .heritage h2,
       .contact h2{
-        --heading-square-size: 0.9em;
-        --heading-square-offset: 0.38em;
         font-size:clamp(20px, 6.2vw, 26px);
         letter-spacing:0.5px;
+        text-align:center;
       }
-      .section-title{
-        padding-left:calc(var(--heading-square-size, 0.9em) + var(--heading-square-offset, 0.38em));
-      }
-      .section-title::before{
-        width:var(--heading-square-size, 0.9em);
-        height:var(--heading-square-size, 0.9em);
-      }
+      .section-title{ padding-left:0; }
+      .section-title::before{ display:none; }
       .section-subtitle{ font-size:3.5vw; padding:0 15px; }
       
       /* Gallery proporzionata */
@@ -1333,9 +1324,7 @@
       
       /* Contact proporzionato */
       .contact{ padding:40px 15px; }
-      .contact h2{
-        padding-left:calc(var(--heading-square-size, 0.9em) + var(--heading-square-offset, 0.38em));
-      }
+      .contact h2{ padding-left:0; }
       .contact p{ font-size:4vw; padding:0 10px; }
       .contact p.highlight{ font-size:4.5vw; }
       .cta-btn{ padding:12px 25px; font-size:3.5vw; letter-spacing:1.5px; }
@@ -1353,14 +1342,11 @@
       /* Heritage proporzionato - compact */
       .heritage{ padding:24px 12px; }
       .heritage h2{
-        /* Keep square size aligned with other headings */
         margin-bottom:8px;
-        padding-left:calc(var(--heading-square-size, 0.9em) + var(--heading-square-offset, 0.38em));
+        padding-left:0;
+        text-align:center;
       }
-      .heritage h2::before{
-        width:var(--heading-square-size, 0.9em);
-        height:var(--heading-square-size, 0.9em);
-      }
+      .heritage h2::before{ display:none; }
       .heritage p{ font-size:clamp(15px, 4vw, 17px); line-height:1.5; }
       .story-lead{ font-size:clamp(15px, 4.2vw, 17px); line-height:1.5; padding:0 6px; }
 
@@ -1406,24 +1392,17 @@
       .buontalenti-story{ padding:24px 10px; overflow:visible; }
       .story-header{ margin-bottom:14px; }
       .story-title{
-        --heading-square-size: 1em;
         font-size:clamp(18px, 6.5vw, 26px);
         padding-left:0;
         display:inline-flex;
         flex-wrap:wrap;
         justify-content:center;
         align-items:center;
-        gap:6px 8px;
+        gap:0;
         text-align:center;
         margin:0 auto 12px;
       }
-      .story-title::before{
-        position:static;
-        transform:none;
-        width:var(--heading-square-size, 1em);
-        height:var(--heading-square-size, 1em);
-        flex-shrink:0;
-      }
+      .story-title::before{ display:none; }
       .story-title-main{ display:inline; }
       .story-title-sub{
         display:block;
@@ -1529,18 +1508,12 @@
       .story-title,
       .heritage h2,
       .contact h2{
-        --heading-square-size: 0.9em;
-        --heading-square-offset: 0.38em;
         font-size:clamp(18px, 6vw, 24px);
         letter-spacing:0.5px;
+        text-align:center;
       }
-      .section-title{
-        padding-left:calc(var(--heading-square-size, 0.9em) + var(--heading-square-offset, 0.38em));
-      }
-      .section-title::before{
-        width:var(--heading-square-size, 0.9em);
-        height:var(--heading-square-size, 0.9em);
-      }
+      .section-title{ padding-left:0; }
+      .section-title::before{ display:none; }
       
       .gallery-item{ width:18vw; height:18vw; max-width:70px; max-height:70px; }
       
@@ -1648,6 +1621,24 @@
       .nav-menu a, .cta-btn, .mv-tab {
         border: 2px solid currentColor;
       }
+    }
+
+    /* Final override: remove heading squares in mobile build */
+    .section-title::before,
+    .story-title::before,
+    .heritage h2::before,
+    .contact h2::before{
+      content: none !important;
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    .section-title,
+    .story-title,
+    .heritage h2,
+    .contact h2{
+      padding-left: 0 !important;
+      text-align: center !important;
     }
   </style>
 </head>
