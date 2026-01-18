@@ -1440,17 +1440,22 @@
         align-items: center;
         text-align: center;
       }
-      .benefit h3{ font-size:clamp(16.8px, 5.04vw, 21px); margin-bottom:4px; }
+      .benefit h3{ font-size:clamp(16.8px, 5.04vw, 21px); margin-bottom:4px; flex-shrink:0; }
       .benefit p{ 
         font-size:clamp(15px, 4vw, 17px); 
         line-height:1.35;
         flex: 1;
-        display: block;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
         text-align: center;
       }
       .benefit p .highlight-pink{
         display: inline;
         white-space: nowrap;
+        margin: 0 3px;
       }
       
       /* Contact proporzionato */
