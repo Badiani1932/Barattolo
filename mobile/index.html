@@ -2335,7 +2335,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!scroller) return;
       
       function centerScroller(){
-        // Force a layout recalculation by accessing offsetHeight
+        // Force a layout recalculation
         scroller.offsetHeight;
         
         // Now calculate scrollable width
@@ -2350,6 +2350,7 @@ document.addEventListener('DOMContentLoaded', () => {
       function collapse(){
         section.classList.remove('is-expanded');
         section.style.cursor = '';
+        scroller.style.width = '';
         scroller.scrollLeft = 0;
       }
 
@@ -2415,10 +2416,15 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.cursor = expanded ? 'grab' : '';
 
         if (expanded) {
-          // Wait for CSS transition to complete (0.65s) then center
+          // Set the scroller width to 250% to match the expanded image
+          const sectionWidth = section.clientWidth;
+          scroller.style.width = (sectionWidth * 2.5) + 'px';
+          
+          // Wait for CSS transition and width change to complete
           setTimeout(centerScroller, 700);
         } else {
           // Reset scroll so the collapsed centered crop is stable
+          scroller.style.width = '';
           scroller.scrollLeft = 0;
         }
       });
