@@ -577,8 +577,8 @@
     }
     .products .section-title::before{ display:none; }
      /* UPDATED: Tab quadrati 380px - FORZATO con padding */
-     .products-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:50px; max-width:1350px; margin:0 auto; }
-    .card{ background:#fff; border-radius:25px; overflow:hidden; box-shadow:0 15px 50px rgba(0,0,0,0.15); transition:all 0.4s; }
+    .products-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:50px; max-width:1350px; margin:0 auto; }
+    .card{ background:#fff; border-radius:25px; overflow:hidden; box-shadow:0 15px 50px rgba(0,0,0,0.15); transition:all 0.4s; display:flex; flex-direction:column; height:100%; }
     .card:hover{ transform:translateY(-12px) scale(1.02); box-shadow:0 25px 70px rgba(0,0,0,0.25); }
      /* FORZA quadrato: usa padding-top 100% per creare un box quadrato */
      .card-img{ 
@@ -737,9 +737,9 @@
     .card.pistacchio .card-header{ background:linear-gradient(135deg, var(--badiani-green), #7f8c5a); }
     .card-name{ font-size:30px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
     .card-sub{ font-size:16px; opacity:.9; letter-spacing:1px; font-style:normal; font-weight:300; text-transform:uppercase; }
-    .card-body{ padding:35px; text-align:center; }
-    .card-description{ font-size:19px; margin-bottom:25px; line-height:1.9; color:var(--badiani-gray); font-weight:300; text-align:center; }
-    .card-features{ list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .card-body{ padding:35px; text-align:center; display:flex; flex-direction:column; flex:1 1 auto; }
+    .card-description{ font-size:19px; margin-bottom:20px; line-height:1.9; color:var(--badiani-gray); font-weight:300; text-align:center; }
+    .card-features{ list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:auto; }
     .card-features li{ font-size:16px; padding:12px; background:var(--bg-light); border-radius:10px; display:flex; align-items:center; gap:10px; font-weight:400; }
     /* use Unicode escape for checkmark to avoid encoding issues */
     .card-features li::before{ content:"\2713"; color:var(--badiani-pink); font-size:18px; font-weight:700; margin-right:6px; display:inline-block; }
