@@ -2374,8 +2374,10 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.cursor = expanded ? 'grab' : '';
 
         if (expanded) {
-          // Give layout a tick so scrollWidth is correct
-          requestAnimationFrame(centerScroller);
+          // Give layout multiple ticks to ensure scrollWidth is updated after CSS transforms
+          requestAnimationFrame(() => {
+            requestAnimationFrame(centerScroller);
+          });
         } else {
           // Reset scroll so the collapsed centered crop is stable
           scroller.scrollLeft = 0;
