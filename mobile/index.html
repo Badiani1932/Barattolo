@@ -584,7 +584,18 @@
       padding-bottom: 0;
       -webkit-overflow-scrolling: touch;
     }
-    .global-presence.is-expanded .global-presence-bg{ overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .global-presence.is-expanded .global-presence-bg{ 
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: auto;
+      bottom: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      width: auto;
+    }
     .global-presence.is-expanded .global-presence-bg::-webkit-scrollbar{ display:none; }
     .global-presence.is-expanded .global-presence-bg img{
       top:-55%;
@@ -2350,7 +2361,7 @@ document.addEventListener('DOMContentLoaded', () => {
       function collapse(){
         section.classList.remove('is-expanded');
         section.style.cursor = '';
-        scroller.style.width = '';
+        scroller.style.right = '';
         scroller.scrollLeft = 0;
       }
 
@@ -2416,15 +2427,14 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.cursor = expanded ? 'grab' : '';
 
         if (expanded) {
-          // Set the scroller width to 250% to match the expanded image
-          const sectionWidth = section.clientWidth;
-          scroller.style.width = (sectionWidth * 2.5) + 'px';
+          // Remove the right: 0 constraint so image can overflow and create scrollWidth > clientWidth
+          scroller.style.right = 'auto';
           
-          // Wait for CSS transition and width change to complete
+          // Wait for CSS transition and layout to complete
           setTimeout(centerScroller, 700);
         } else {
-          // Reset scroll so the collapsed centered crop is stable
-          scroller.style.width = '';
+          // Reset constraints
+          scroller.style.right = '';
           scroller.scrollLeft = 0;
         }
       });
