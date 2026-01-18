@@ -660,7 +660,7 @@
     }
     /* Let the video column auto-size from the video's aspect ratio when height is 100% */
     .barattolo-intro-content{ max-width:1200px; margin:0 auto; display:grid; grid-template-columns:auto 1fr; gap:80px; align-items:stretch; text-align:left; padding:0 20px; }
-    .barattolo-image-pila{ position:relative; width:auto; min-width:220px; max-width:420px; display:flex; align-items:stretch; justify-content:center; overflow:hidden; background:rgba(0,0,0,0.18); }
+    .barattolo-image-pila{ position:relative; aspect-ratio:9/16; width:auto; height:auto; max-height:70vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:rgba(0,0,0,0.18); }
 
     /* Subtle overlay so any letterboxing looks like part of the background */
     .barattolo-image-pila::after{
@@ -1300,9 +1300,9 @@
       .barattolo-intro{ padding:0; margin:0; background:transparent !important; }
       .barattolo-intro::before{ display:none !important; }
       .barattolo-intro-content{ grid-template-columns:1fr; gap:0; padding:0; margin:0; background:transparent; } 
-      .barattolo-image-pila{ max-width:none; width:100%; margin:0; padding:0; display:flex; align-items:flex-start; line-height:0; font-size:0; min-width:0; overflow:hidden; background:transparent !important; height:auto; border-bottom: var(--section-divider-width) solid var(--section-divider-color); }
+      .barattolo-image-pila{ aspect-ratio:9/16; max-width:100%; width:100%; max-height:none; margin:0 auto; padding:0; display:flex; align-items:center; justify-content:center; line-height:0; font-size:0; overflow:hidden; background:#000 !important; border-bottom: var(--section-divider-width) solid var(--section-divider-color); }
       .barattolo-image-pila::after{ display:none !important; }
-      .barattolo-image-pila video{ width:100%; height:auto; min-height:0; max-height:none; object-fit:contain; object-position:center; border-radius:0; box-shadow:none; display:block; margin:0; padding:0; background:#000; } 
+      .barattolo-image-pila video{ width:100%; height:100%; min-height:0; max-height:none; object-fit:contain; object-position:center; border-radius:0; box-shadow:none; display:block; margin:0; padding:0; background:#000; } 
       .barattolo-image-pila video::-webkit-media-controls-start-playback-button,
       .barattolo-image-pila video::-webkit-media-controls{
         display:none !important;
@@ -1983,7 +1983,7 @@
   <div class="barattolo-intro-content">
     <div class="barattolo-image-pila">
       <video id="barattoloVideo" autoplay muted loop playsinline webkit-playsinline preload="auto">
-        <source src="../1120.mp4" type="video/mp4">
+        <source src="../1220.mp4" type="video/mp4">
       </video>
     </div>
     <div class="barattolo-text">
