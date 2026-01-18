@@ -599,7 +599,7 @@
       width: 250%;
       height: 155%;
       max-width: none;
-      margin-left: -75%;
+      margin-left: 0;
       margin-top: -35%;
       object-fit: cover;
       object-position: center;
@@ -2431,7 +2431,13 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.cursor = expanded ? 'grab' : '';
 
         if (expanded) {
-          // Image is already centered via CSS margin-left, no need to scroll
+          // Center the scroll position immediately after class is applied
+          requestAnimationFrame(() => {
+            const max = scroller.scrollWidth - scroller.clientWidth;
+            if (max > 0) {
+              scroller.scrollLeft = max / 2;
+            }
+          });
         } else {
           // Reset scroll so the collapsed centered crop is stable
           scroller.scrollLeft = 0;
