@@ -2335,8 +2335,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!scroller) return;
       
       function centerScroller(){
+        // Force a layout recalculation by accessing offsetHeight
+        scroller.offsetHeight;
+        
+        // Now calculate scrollable width
         const max = scroller.scrollWidth - scroller.clientWidth;
-        if (max > 0) scroller.scrollLeft = max / 2;
+        console.log('scrollWidth:', scroller.scrollWidth, 'clientWidth:', scroller.clientWidth, 'max:', max);
+        
+        if (max > 0) {
+          scroller.scrollLeft = max / 2;
+        }
       }
 
       function collapse(){
@@ -2349,19 +2357,52 @@ document.addEventListener('DOMContentLoaded', () => {
       let moved = false;
       let startX = 0;
       let startY = 0;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartScrollLeft = 0;
 
       scroller.addEventListener('pointerdown', (e) => {
         moved = false;
         startX = e.clientX;
         startY = e.clientY;
-      }, { passive: true });
+        
+        // Desktop: prepare for drag when expanded
+        if (section.classList.contains('is-expanded') && e.pointerType === 'mouse') {
+          isDragging = true;
+          dragStartX = e.clientX;
+          dragStartScrollLeft = scroller.scrollLeft;
+          scroller.setPointerCapture && scroller.setPointerCapture(e.pointerId);
+          section.style.cursor = 'grabbing';
+          e.preventDefault();
+        }
+      });
 
       scroller.addEventListener('pointermove', (e) => {
+        if (isDragging) {
+          const dx = e.clientX - dragStartX;
+          scroller.scrollLeft = dragStartScrollLeft - (dx * 1.6);
+          return;
+        }
+        
         if (moved) return;
         const dx = Math.abs(e.clientX - startX);
         const dy = Math.abs(e.clientY - startY);
         if (dx > 10 || dy > 10) moved = true;
       }, { passive: true });
+
+      scroller.addEventListener('pointerup', () => {
+        if (isDragging) {
+          isDragging = false;
+          if (section.classList.contains('is-expanded')) section.style.cursor = 'grab';
+        }
+      });
+
+      scroller.addEventListener('pointercancel', () => {
+        if (isDragging) {
+          isDragging = false;
+          if (section.classList.contains('is-expanded')) section.style.cursor = 'grab';
+        }
+      });
 
       // Tap/click toggles expanded state (mobile requirement)
       section.addEventListener('click', (e) => {
@@ -2374,10 +2415,8 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.cursor = expanded ? 'grab' : '';
 
         if (expanded) {
-          // Give layout multiple ticks to ensure scrollWidth is updated after CSS transforms
-          requestAnimationFrame(() => {
-            requestAnimationFrame(centerScroller);
-          });
+          // Wait for CSS transition to complete (0.65s) then center
+          setTimeout(centerScroller, 700);
         } else {
           // Reset scroll so the collapsed centered crop is stable
           scroller.scrollLeft = 0;
@@ -2394,40 +2433,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.1 });
         obs.observe(section);
       }
-
-      // Desktop: mouse drag to pan horizontally when expanded
-      let isDragging = false;
-      let dragStartX = 0;
-      let dragStartScrollLeft = 0;
-
-      scroller.addEventListener('pointerdown', (e) => {
-        if (!section.classList.contains('is-expanded')) return;
-        if (e.pointerType !== 'mouse') return;
-        isDragging = true;
-        dragStartX = e.clientX;
-        dragStartScrollLeft = scroller.scrollLeft;
-        scroller.setPointerCapture && scroller.setPointerCapture(e.pointerId);
-        section.style.cursor = 'grabbing';
-        e.preventDefault();
-      });
-
-      scroller.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        const dx = e.clientX - dragStartX;
-        scroller.scrollLeft = dragStartScrollLeft - (dx * 1.6);
-      });
-
-      scroller.addEventListener('pointerup', () => {
-        if (!isDragging) return;
-        isDragging = false;
-        if (section.classList.contains('is-expanded')) section.style.cursor = 'grab';
-      });
-
-      scroller.addEventListener('pointercancel', () => {
-        if (!isDragging) return;
-        isDragging = false;
-        if (section.classList.contains('is-expanded')) section.style.cursor = 'grab';
-      });
     })();
 
     // Mobile: Gallery items tap-to-zoom (replaces hover)
