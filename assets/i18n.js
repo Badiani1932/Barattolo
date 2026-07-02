@@ -72,7 +72,7 @@
       'story.tl.originDescHtml': 'Bernardo Buontalenti invents gelato in <span class="highlight-pink">Renaissance Florence</span>, creating a frozen delicacy for the Medici court.',
       'story.tl.tribute': 'The Tribute',
       'story.tl.tributeDesc': 'Badiani creates the “Buontalenti” cream with 4 simple ingredients (cream, milk, sugar, eggs) honouring the inventor.',
-      'story.tl.tributeDescHtml': 'Badiani creates the “Buontalenti” cream with <span class="highlight-pink">4 simple ingredients</span> (cream, milk, sugar, eggs) honouring the inventor.',
+      'story.tl.tributeDescHtml': 'Badiani creates the “Buontalenti” cream with <span class="highlight-pink">4 simple ingredients</span> <span class="nowrap">(cream, milk, sugar, eggs)</span> honouring the inventor.',
       'story.tl.legacy': 'The Legacy',
       'story.tl.legacyDesc': 'Il Barattolo Gelato brings this iconic Florentine flavour to premium retail worldwide.',
       'story.tl.legacyDescHtml': 'Il Barattolo Gelato brings this iconic Florentine flavour to <span class="highlight-pink">premium retail</span> worldwide.',
@@ -108,7 +108,7 @@
       'card.classico.f4': '24-month shelf life',
 
       'card.dolcevita.desc': 'Custard gelato with gianduia hazelnut-cocoa spread (20%). <br>Made with Italian hazelnut paste and Madagascar Bourbon vanilla.',
-      'card.dolcevita.f1': 'Italian hazelnut 2.6%',
+      'card.dolcevita.f1': 'Italian hazelnut paste',
       'card.dolcevita.f2': 'Madagascar vanilla',
       'card.dolcevita.f3': 'Gluten-free',
       'card.dolcevita.f4': 'Award-winning',
@@ -181,6 +181,20 @@
       'spec.allergens': 'Allergens',
       'spec.mayContain': 'May Contain',
       'spec.gluten': 'Gluten',
+      'spec.ingredients': 'Ingredients',
+      'spec.storage': 'Storage',
+      'spec.packaging': 'Packaging',
+      'spec.nutrition': 'Nutritional information',
+      'spec.nutritionPer100g': 'average values per 100g',
+
+      'nutrition.energy': 'Energy',
+      'nutrition.fat': 'Fat',
+      'nutrition.saturates': 'of which saturates',
+      'nutrition.carbs': 'Carbohydrates',
+      'nutrition.sugars': 'of which sugars',
+      'nutrition.protein': 'Protein',
+      'nutrition.salt': 'Salt',
+      'nutrition.fiber': 'Fiber',
 
       'hint.tapForSpecs': 'Tap for specs',
 
@@ -191,7 +205,16 @@
       'specValue.glutenFree': 'GLUTEN FREE',
       'specValue.mayContain.classico': 'SOY, NUTS, PEANUTS',
       'specValue.mayContain.dolcevita': 'SOY, other NUTS, PEANUTS',
-      'specValue.mayContain.pistacchio': 'SOY, other NUTS, PEANUTS'
+      'specValue.mayContain.pistacchio': 'SOY, other NUTS, PEANUTS',
+
+      'specValue.ingredients.classico': 'Fresh Italian CREAM, Italian fresh whole MILK, sugar, skimmed MILK powder, free-range EGG yolk',
+      'specValue.ingredients.dolcevita': 'Fresh Italian CREAM 36%, sugar, Italian fresh whole MILK 23%, sunflower oil, skimmed MILK powder, Italian HAZELNUT paste, Italian free-range EGG yolk 1.6%, low-fat cocoa powder, BUTTER, Madagascar Bourbon vanilla extract',
+      'specValue.ingredients.pistacchio': 'Fresh Italian CREAM 36%, Italian fresh whole MILK 24%, sugar, skimmed MILK powder, PISTACHIO paste 5%, sunflower oil, Italian free-range EGG yolk 1.6%, BUTTER, salt',
+      'specValue.storage': 'Keep at -18°C (-0.4°F). Do not refreeze after defrosting.',
+      'specValue.packaging': 'Container PET01, lid PP05, seal PAP22. Check the recycling rules and regulations of your council.',
+      'specValue.allergens.classico': 'MILK, EGGS',
+      'specValue.allergens.dolcevita': 'MILK, HAZELNUTS, EGGS',
+      'specValue.allergens.pistacchio': 'MILK, PISTACHIO'
     },
 
     it: {
@@ -252,7 +275,7 @@
       'story.tl.originDescHtml': 'Bernardo Buontalenti inventa il gelato nella <span class="highlight-pink">Firenze rinascimentale</span>, creando una delizia ghiacciata per la corte dei Medici.',
       'story.tl.tribute': 'L’omaggio',
       'story.tl.tributeDesc': 'Badiani crea la crema “Buontalenti” con 4 ingredienti semplici (panna, latte, zucchero, uova) in onore dell’inventore.',
-      'story.tl.tributeDescHtml': 'Badiani crea la crema “Buontalenti” con <span class="highlight-pink">4 ingredienti semplici</span> (panna, latte, zucchero, uova) in onore dell’inventore.',
+      'story.tl.tributeDescHtml': 'Badiani crea la crema “Buontalenti” con <span class="highlight-pink">4 ingredienti semplici</span> <span class="nowrap">(panna, latte, zucchero, uova)</span> in onore dell’inventore.',
       'story.tl.legacy': 'L’eredità',
       'story.tl.legacyDesc': 'Il Barattolo Gelato porta questo iconico gusto fiorentino nel retail premium in tutto il mondo.',
       'story.tl.legacyDescHtml': 'Il Barattolo Gelato porta questo iconico gusto fiorentino nel <span class="highlight-pink">retail premium</span> in tutto il mondo.',
@@ -288,7 +311,7 @@
       'card.classico.f4': 'Shelf life 24 mesi',
 
       'card.dolcevita.desc': 'Gelato alla crema con variegatura alla gianduia (20%). <br>Con pasta di nocciola italiana e vaniglia Bourbon del Madagascar.',
-      'card.dolcevita.f1': 'Nocciola italiana 2,6%',
+      'card.dolcevita.f1': 'Pasta di nocciola italiana',
       'card.dolcevita.f2': 'Vaniglia del Madagascar',
       'card.dolcevita.f3': 'Senza glutine',
       'card.dolcevita.f4': 'Premiato',
@@ -361,6 +384,20 @@
       'spec.allergens': 'Allergeni',
       'spec.mayContain': 'Può contenere',
       'spec.gluten': 'Glutine',
+      'spec.ingredients': 'Ingredienti',
+      'spec.storage': 'Conservazione',
+      'spec.packaging': 'Imballaggio',
+      'spec.nutrition': 'Valori nutrizionali',
+      'spec.nutritionPer100g': 'valori medi per 100g',
+
+      'nutrition.energy': 'Energia',
+      'nutrition.fat': 'Grassi',
+      'nutrition.saturates': 'di cui acidi grassi saturi',
+      'nutrition.carbs': 'Carboidrati',
+      'nutrition.sugars': 'di cui zuccheri',
+      'nutrition.protein': 'Proteine',
+      'nutrition.salt': 'Sale',
+      'nutrition.fiber': 'Fibre',
 
       'hint.tapForSpecs': 'Tocca per le specifiche',
 
@@ -371,7 +408,16 @@
       'specValue.glutenFree': 'SENZA GLUTINE',
       'specValue.mayContain.classico': 'SOIA, FRUTTA A GUSCIO, ARACHIDI',
       'specValue.mayContain.dolcevita': 'SOIA, altra FRUTTA A GUSCIO, ARACHIDI',
-      'specValue.mayContain.pistacchio': 'SOIA, altra FRUTTA A GUSCIO, ARACHIDI'
+      'specValue.mayContain.pistacchio': 'SOIA, altra FRUTTA A GUSCIO, ARACHIDI',
+
+      'specValue.ingredients.classico': 'PANNA fresca italiana, LATTE fresco intero italiano, zucchero, LATTE scremato in polvere, tuorlo d’UOVO da allevamento all’aperto',
+      'specValue.ingredients.dolcevita': 'PANNA fresca italiana 36%, zucchero, LATTE fresco intero italiano 23%, olio di girasole, LATTE scremato in polvere, pasta di NOCCIOLA italiana, tuorlo d’UOVO italiano (allevamento all’aperto) 1,6%, cacao magro in polvere, BURRO, estratto di vaniglia Bourbon del Madagascar',
+      'specValue.ingredients.pistacchio': 'PANNA fresca italiana 36%, LATTE fresco intero italiano 24%, zucchero, LATTE scremato in polvere, pasta di PISTACCHIO 5%, olio di girasole, tuorlo d’UOVO italiano (allevamento all’aperto) 1,6%, BURRO, sale',
+      'specValue.storage': 'Conservare a -18°C (-0,4°F). Una volta scongelato, non ricongelare.',
+      'specValue.packaging': 'Contenitore PET01, coperchio PP05, sigillo PAP22. Verifica le regole di riciclo del tuo comune.',
+      'specValue.allergens.classico': 'LATTE, UOVA',
+      'specValue.allergens.dolcevita': 'LATTE, NOCCIOLE, UOVA',
+      'specValue.allergens.pistacchio': 'LATTE, PISTACCHIO'
     },
 
     es: {
@@ -432,7 +478,7 @@
       'story.tl.originDescHtml': 'Bernardo Buontalenti inventa el helado en la <span class="highlight-pink">Florencia renacentista</span>, creando un postre helado para la corte de los Medici.',
       'story.tl.tribute': 'El homenaje',
       'story.tl.tributeDesc': 'Badiani crea la crema “Buontalenti” con 4 ingredientes simples (nata, leche, azúcar, huevos) en honor al inventor.',
-      'story.tl.tributeDescHtml': 'Badiani crea la crema “Buontalenti” con <span class="highlight-pink">4 ingredientes simples</span> (nata, leche, azúcar, huevos) en honor al inventor.',
+      'story.tl.tributeDescHtml': 'Badiani crea la crema “Buontalenti” con <span class="highlight-pink">4 ingredientes simples</span> <span class="nowrap">(nata, leche, azúcar, huevos)</span> en honor al inventor.',
       'story.tl.legacy': 'El legado',
       'story.tl.legacyDesc': 'Il Barattolo Gelato lleva este icónico sabor florentino al retail premium en todo el mundo.',
       'story.tl.legacyDescHtml': 'Il Barattolo Gelato lleva este icónico sabor florentino al <span class="highlight-pink">retail premium</span> en todo el mundo.',
@@ -468,7 +514,7 @@
       'card.classico.f4': 'Caducidad 24 meses',
 
       'card.dolcevita.desc': 'Helado de crema con gianduia de avellana y cacao (20%). <br>Con pasta de avellana italiana y vainilla Bourbon de Madagascar.',
-      'card.dolcevita.f1': 'Avellana italiana 2,6%',
+      'card.dolcevita.f1': 'Pasta de avellana italiana',
       'card.dolcevita.f2': 'Vainilla de Madagascar',
       'card.dolcevita.f3': 'Sin gluten',
       'card.dolcevita.f4': 'Premiado',
@@ -541,6 +587,20 @@
       'spec.allergens': 'Alérgenos',
       'spec.mayContain': 'Puede contener',
       'spec.gluten': 'Gluten',
+      'spec.ingredients': 'Ingredientes',
+      'spec.storage': 'Conservación',
+      'spec.packaging': 'Envase',
+      'spec.nutrition': 'Valores nutricionales',
+      'spec.nutritionPer100g': 'valor medio por 100g',
+
+      'nutrition.energy': 'Valor energético',
+      'nutrition.fat': 'Grasas',
+      'nutrition.saturates': 'de las cuales saturadas',
+      'nutrition.carbs': 'Hidratos de carbono',
+      'nutrition.sugars': 'de los cuales azúcares',
+      'nutrition.protein': 'Proteínas',
+      'nutrition.salt': 'Sal',
+      'nutrition.fiber': 'Fibras',
 
       'hint.tapForSpecs': 'Toca para ver',
 
@@ -551,7 +611,16 @@
       'specValue.glutenFree': 'SIN GLUTEN',
       'specValue.mayContain.classico': 'SOJA, FRUTOS SECOS, CACAHUETES',
       'specValue.mayContain.dolcevita': 'SOJA, otros FRUTOS SECOS, CACAHUETES',
-      'specValue.mayContain.pistacchio': 'SOJA, otros FRUTOS SECOS, CACAHUETES'
+      'specValue.mayContain.pistacchio': 'SOJA, otros FRUTOS SECOS, CACAHUETES',
+
+      'specValue.ingredients.classico': 'NATA fresca italiana, LECHE entera fresca italiana, azúcar, LECHE desnatada en polvo, yema de HUEVO de gallinas camperas',
+      'specValue.ingredients.dolcevita': 'NATA fresca italiana 36%, azúcar, LECHE entera fresca italiana 23%, aceite de girasol, LECHE desnatada en polvo, pasta de AVELLANAS italiana, yema de HUEVO italiana (de gallinas camperas) 1,6%, cacao sin grasas en polvo, MANTEQUILLA, extracto de vainilla Bourbon de Madagascar',
+      'specValue.ingredients.pistacchio': 'NATA fresca italiana 36%, LECHE entera fresca italiana 24%, azúcar, LECHE desnatada en polvo, pasta de PISTACHO 5%, aceite de girasol, yema de HUEVO italiana (de gallinas camperas) 1,6%, MANTEQUILLA, sal',
+      'specValue.storage': 'Conservar a -18°C (-0,4°F). Una vez descongelado no volver a congelar.',
+      'specValue.packaging': 'Envase PET01, tapa PP05 y sello PAP22. Verifica las reglas y normas de reciclaje de tu municipio.',
+      'specValue.allergens.classico': 'LECHE, HUEVOS',
+      'specValue.allergens.dolcevita': 'LECHE, AVELLANAS, HUEVOS',
+      'specValue.allergens.pistacchio': 'LECHE, PISTACHO'
     },
 
     fr: {
@@ -612,7 +681,7 @@
       'story.tl.originDescHtml': 'Bernardo Buontalenti invente le gelato dans la <span class="highlight-pink">Florence de la Renaissance</span>, créant une gourmandise glacée pour la cour des Médicis.',
       'story.tl.tribute': 'L’hommage',
       'story.tl.tributeDesc': 'Badiani crée la crème « Buontalenti » avec 4 ingrédients simples (crème, lait, sucre, œufs) pour honorer l’inventeur.',
-      'story.tl.tributeDescHtml': 'Badiani crée la crème « Buontalenti » avec <span class="highlight-pink">4 ingrédients simples</span> (crème, lait, sucre, œufs) pour honorer l’inventeur.',
+      'story.tl.tributeDescHtml': 'Badiani crée la crème « Buontalenti » avec <span class="highlight-pink">4 ingrédients simples</span> <span class="nowrap">(crème, lait, sucre, œufs)</span> pour honorer l’inventeur.',
       'story.tl.legacy': 'L’héritage',
       'story.tl.legacyDesc': 'Il Barattolo Gelato apporte ce parfum florentin iconique au retail premium dans le monde entier.',
       'story.tl.legacyDescHtml': 'Il Barattolo Gelato apporte ce parfum florentin iconique au <span class="highlight-pink">retail premium</span> dans le monde entier.',
@@ -628,7 +697,7 @@
 
       'barattolo.p1': 'Grâce au succès de nos parfums Buontalenti, Buontalenti Pistacchio et La Dolcevita, nous avons développé Il Barattolo GELATO — une gamme premium conçue pour la distribution à grande échelle.',
       'barattolo.p1Html': 'Grâce au succès de nos parfums Buontalenti, Buontalenti Pistacchio et La Dolcevita, nous avons développé <span class="highlight-pink">Il Barattolo GELATO</span> — une gamme premium conçue pour la <span class="highlight-pink">distribution à grande échelle</span>.',
-      'barattolo.p2': 'Ce format innovant apporte la qualité artisanal authentique de notre gelato à un public plus large, sans compromis sur les ingrédients ni le savoir-faire traditionnel.',
+      'barattolo.p2': 'Ce format innovant apporte la qualité artisanale authentique de notre gelato à un public plus large, sans compromis sur les ingrédients ni le savoir-faire traditionnel.',
       'barattolo.p3': 'Avec Il Barattolo Gelato, chacun peut savourer les parfums riches et onctueux qui ont fait la renommée de Badiani, désormais dans un format pratique de 500ml.',
       'barattolo.p3Html': 'Avec Il Barattolo Gelato, chacun peut savourer les parfums riches et onctueux qui ont fait la renommée de Badiani, désormais dans un <span class="highlight-pink">format pratique de 500ml</span>.',
 
@@ -648,7 +717,7 @@
       'card.classico.f4': 'DLU 24 mois',
 
       'card.dolcevita.desc': 'Gelato à la crème avec gianduia noisette-cacao (20%). <br>Avec pâte de noisette italienne et vanille Bourbon de Madagascar.',
-      'card.dolcevita.f1': 'Noisette italienne 2,6%',
+      'card.dolcevita.f1': 'Pâte de noisette italienne',
       'card.dolcevita.f2': 'Vanille de Madagascar',
       'card.dolcevita.f3': 'Sans gluten',
       'card.dolcevita.f4': 'Primé',
@@ -721,6 +790,20 @@
       'spec.allergens': 'Allergènes',
       'spec.mayContain': 'Peut contenir',
       'spec.gluten': 'Gluten',
+      'spec.ingredients': 'Ingrédients',
+      'spec.storage': 'Conservation',
+      'spec.packaging': 'Emballage',
+      'spec.nutrition': 'Valeurs nutritionnelles',
+      'spec.nutritionPer100g': 'valeur moyenne pour 100g',
+
+      'nutrition.energy': 'Énergie',
+      'nutrition.fat': 'Matières grasses',
+      'nutrition.saturates': 'dont acides gras saturés',
+      'nutrition.carbs': 'Glucides',
+      'nutrition.sugars': 'dont sucres',
+      'nutrition.protein': 'Protéines',
+      'nutrition.salt': 'Sel',
+      'nutrition.fiber': 'Fibres',
 
       'hint.tapForSpecs': 'Appuyez pour voir',
 
@@ -731,7 +814,16 @@
       'specValue.glutenFree': 'SANS GLUTEN',
       'specValue.mayContain.classico': 'SOJA, FRUITS À COQUE, ARACHIDES',
       'specValue.mayContain.dolcevita': 'SOJA, autres FRUITS À COQUE, ARACHIDES',
-      'specValue.mayContain.pistacchio': 'SOJA, autres FRUITS À COQUE, ARACHIDES'
+      'specValue.mayContain.pistacchio': 'SOJA, autres FRUITS À COQUE, ARACHIDES',
+
+      'specValue.ingredients.classico': 'CRÈME fraîche italienne, LAIT frais entier italien, sucre, LAIT écrémé en poudre, jaune d’ŒUF de poules élevées au sol',
+      'specValue.ingredients.dolcevita': 'CRÈME fraîche italienne 36%, sucre, LAIT frais entier italien 23%, huile de tournesol, LAIT écrémé en poudre, pâte de NOISETTE italienne, jaune d’ŒUF italien (de poules élevées au sol) 1,6%, cacao maigre en poudre, BEURRE, extrait de vanille Bourbon de Madagascar',
+      'specValue.ingredients.pistacchio': 'CRÈME fraîche italienne 36%, LAIT frais entier italien 24%, sucre, LAIT écrémé en poudre, pâte de PISTACHE 5%, huile de tournesol, jaune d’ŒUF italien (de poules élevées au sol) 1,6%, BEURRE, sel',
+      'specValue.storage': 'Conserver à -18°C (-0,4°F). Ne pas recongeler après décongélation.',
+      'specValue.packaging': 'Bac PET01, couvercle PP05 et sceau PAP22. Vérifiez les règles et normes de recyclage de votre commune.',
+      'specValue.allergens.classico': 'LAIT, ŒUFS',
+      'specValue.allergens.dolcevita': 'LAIT, NOISETTES, ŒUFS',
+      'specValue.allergens.pistacchio': 'LAIT, PISTACHE'
     }
   };
 
@@ -745,7 +837,10 @@
     'Energy': 'spec.energy',
     'Allergens': 'spec.allergens',
     'May Contain': 'spec.mayContain',
-    'Gluten': 'spec.gluten'
+    'Gluten': 'spec.gluten',
+    'Ingredients': 'spec.ingredients',
+    'Storage': 'spec.storage',
+    'Packaging': 'spec.packaging'
   };
 
   /** @type {Array<() => void>} */
@@ -843,6 +938,15 @@
       if (productId === 'dolcevita' && value === 'SOY, other NUTS, PEANUTS') return t('specValue.mayContain.dolcevita');
       if (productId === 'pistacchio' && value === 'SOY, other NUTS, PEANUTS') return t('specValue.mayContain.pistacchio');
     }
+
+    if (label === 'Ingredients' && ['classico', 'dolcevita', 'pistacchio'].includes(productId)) {
+      return t('specValue.ingredients.' + productId);
+    }
+    if (label === 'Allergens' && ['classico', 'dolcevita', 'pistacchio'].includes(productId)) {
+      return t('specValue.allergens.' + productId);
+    }
+    if (label === 'Storage') return t('specValue.storage');
+    if (label === 'Packaging') return t('specValue.packaging');
 
     return value;
   }

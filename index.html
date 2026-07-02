@@ -153,10 +153,11 @@
       font-display: swap;
     }
 
-    /* Lowercase-only font: use SuperGroteskC just for lowercase letters everywhere. */
+    /* Lowercase-only font: use SuperGroteskA (regular) just for lowercase letters everywhere. */
     @font-face {
       font-family: 'SuperGroteskLower';
-      src: url('fonts/SuperGroteskC-MedLF.otf') format('opentype');
+      src: url('fonts/SuperGroteskA-Rg[7511].woff2') format('woff2'),
+           url('fonts/SuperGroteskA-Rg[7511].woff') format('woff');
       font-weight: 1 1000;
       font-style: normal;
       /* a-z + common Latin-1 lowercase (incl. Italian accents) */
@@ -190,10 +191,10 @@
     }
 
     /* If a string contains lowercase characters but also uppercase in the same word,
-       we still want the WHOLE word/element to render in Grotesk C. This class is
+       we still want the WHOLE word/element to render in SuperGrotesk A. This class is
        applied automatically via JS (see bottom of the page). */
     .sgc-has-lower{
-      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskB', 'SuperGroteskA', sans-serif !important;
+      font-family: 'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB', sans-serif !important;
     }
 
     /* Titles: use SuperGrotesk Medium and show as uppercase */
@@ -242,6 +243,45 @@
       font-family: 'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskA', 'SuperGroteskB';
       font-weight: 300;
     }
+
+    /* Card copy: lowercase text always in SuperGrotesk A regular
+       (overrides the automatic Grotesk C forcing via .sgc-has-lower) */
+    .card-description,
+    .card-description.sgc-has-lower,
+    .card-features li,
+    .card-features li.sgc-has-lower{
+      font-family: 'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB', sans-serif !important;
+      font-weight: 400;
+    }
+
+    /* Narrative rhythm: balanced line breaks for centred copy and titles,
+       orphan-free wrapping for longer paragraphs. */
+    h1, h2, h3,
+    .section-title,
+    .story-title,
+    .card-name,
+    .specs-panel-title,
+    .timeline-title,
+    .card-description,
+    .timeline-desc,
+    .story-lead,
+    .section-subtitle,
+    .gallery-subtitle,
+    .benefit p,
+    .mission-box p,
+    .vision-box p,
+    .card-features li,
+    .hero-content > p,
+    .contact .highlight{
+      text-wrap: balance;
+    }
+    .heritage-intro,
+    .barattolo-text p,
+    .contact p,
+    .spec-value{
+      text-wrap: pretty;
+    }
+    .nowrap{ white-space: nowrap; }
 
     :root{ 
       --badiani-blue:#1e398d; 
@@ -606,7 +646,7 @@
     }
     .section-title::before{ display:none; }
     .section-title span{ color:var(--badiani-pink); font-style:normal; }
-    .section-subtitle{ text-align:center; font-size:20px; color:var(--badiani-gray); margin-bottom:65px; font-style:normal; font-family:'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskA', 'SuperGroteskB', sans-serif; font-weight:500; }
+    .section-subtitle{ text-align:center; font-size:20px; color:var(--badiani-gray); margin-bottom:65px; font-style:normal; font-family:'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB', sans-serif; font-weight:500; }
 
     /* Center the Premium Collection title and square as a single block */
     .products .section-title{
@@ -776,10 +816,10 @@
     .card.classico .card-header{ background:linear-gradient(135deg, var(--badiani-blue), #2a4ab0); }
     .card.dolcevita .card-header{ background:linear-gradient(135deg, #3d2314, #5a3320); }
     .card.pistacchio .card-header{ background:linear-gradient(135deg, var(--badiani-green), #7f8c5a); }
-    .card-name{ font-size:30px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
+    .card-name{ font-size:30px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; line-height:1.15; }
     .card-sub{ font-size:16px; opacity:.9; letter-spacing:1px; font-style:normal; font-weight:300; text-transform:uppercase; }
     .card-body{ padding:35px; text-align:center; display:flex; flex-direction:column; flex:1 1 auto; }
-    .card-description{ font-size:19px; margin-bottom:20px; line-height:1.9; color:var(--badiani-gray); font-weight:300; text-align:center; }
+    .card-description{ font-size:19px; margin-bottom:20px; line-height:1.55; color:var(--badiani-gray); font-weight:300; text-align:center; }
     .card-features{ list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:auto; grid-auto-rows:minmax(72px, auto); }
     .card-features li{ font-size:16px; padding:12px; background:var(--bg-light); border-radius:10px; display:flex; align-items:flex-start; gap:10px; font-weight:400; line-height:1.3; max-height:calc(1.3em * 2 + 24px); overflow:hidden; word-break:break-word; }
     .card-features li.feature-egg{ font-size:15px; text-align:center; align-items:center; justify-content:center; }
@@ -819,10 +859,17 @@
     .specs-panel-title{ font-size:20px; letter-spacing:1px; text-transform:uppercase; color:var(--badiani-blue); margin-bottom:18px; padding-bottom:10px; border-bottom:3px solid var(--badiani-pink); font-weight:700; }
     .specs-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; }
     
-    /* Specs boxes: always use Grotesk C (except the title above) */
+    /* Specs boxes: digits in Grotesk C, lowercase in SuperGrotesk A, uppercase labels in Grotesk B */
     .specs-panel-fullscreen .specs-grid,
     .specs-panel-fullscreen .specs-grid *{
-      font-family: 'SuperGroteskDigits', 'SuperGroteskC', 'SuperGroteskB', 'SuperGroteskA', sans-serif !important;
+      font-family: 'SuperGroteskDigits', 'SuperGroteskLower', 'SuperGroteskB', 'SuperGroteskA', sans-serif !important;
+    }
+    /* Values and nutrition rows: whole text in SuperGrotesk A (avoids per-letter font mixing) */
+    .specs-panel-fullscreen .spec-value,
+    .specs-panel-fullscreen .spec-value *,
+    .specs-panel-fullscreen .nutrition-table,
+    .specs-panel-fullscreen .nutrition-table *{
+      font-family: 'SuperGroteskDigits', 'SuperGroteskA', 'SuperGroteskB', sans-serif !important;
     }
     .spec-card{ background:#fff; padding:15px; border-radius:10px; border-left:4px solid var(--badiani-pink); box-shadow:0 2px 8px rgba(0,0,0,0.08); transition:all 0.3s ease; }
     .spec-card:nth-child(odd){ border-left-color:var(--badiani-blue); }
@@ -832,6 +879,13 @@
     .spec-card:nth-child(odd) .spec-label{ color:var(--badiani-blue); }
     .spec-card:nth-child(even) .spec-label{ color:var(--badiani-pink); }
     .spec-value{ font-size:15px; font-weight:500; color:var(--badiani-gray); line-height:1.4; }
+    .spec-card--wide{ grid-column:1 / -1; }
+    .spec-label small{ font-weight:500; text-transform:none; letter-spacing:0; opacity:0.8; }
+    .nutrition-table{ margin-top:4px; }
+    .nutrition-row{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:5px 0; border-bottom:1px dashed rgba(30,57,141,0.18); font-size:14px; color:var(--badiani-gray); }
+    .nutrition-row:last-child{ border-bottom:none; }
+    .nutrition-row--sub .nutrition-name{ padding-left:14px; opacity:0.75; }
+    .nutrition-value{ font-weight:700; white-space:nowrap; }
     .specs-close-btn{
       --close-icon-size: 22px;
       --close-icon-stroke: 3px;
@@ -1407,7 +1461,7 @@
           Custard gelato with <span class="highlight-pink">gianduia</span> hazelnut-cocoa spread (<span class="percent-boost">20%</span>). Made with Italian hazelnut paste and Madagascar Bourbon vanilla.
         </p>
         <ul class="card-features">
-          <li>Italian hazelnut 2.6%</li>
+          <li>Italian hazelnut paste</li>
           <li>Madagascar vanilla</li>
           <li>Gluten-free</li>
           <li>Award-winning</li>
@@ -1562,9 +1616,97 @@
 
 <script>
 const specsData = {
-  classico: { image: 'classico-open.webp', specs: [ {label:'Product Code', value:'BBT-0010'}, {label:'Description', value:'Custard Gelato'}, {label:'Net Weight', value:'500ml / 300g'}, {label:'EAN Product', value:'8056214620017'}, {label:'EAN Carton', value:'08056214620109'}, {label:'Shelf Life', value:'24 months at -18°C (-0.4°F)'}, {label:'Energy', value:'255 kcal / 1066 kJ per 100g'}, {label:'Allergens', value:'MILK, EGGS'}, {label:'May Contain', value:'SOY, NUTS, PEANUTS'}, {label:'Gluten', value:'GLUTEN FREE'} ] },
-  dolcevita: { image: 'dolcevita-open.webp', specs: [ {label:'Product Code', value:'BDV-0020'}, {label:'Description', value:'Custard gelato with gianduia spread 20%'}, {label:'Net Weight', value:'500ml / 300g'}, {label:'EAN Product', value:'8056214620031'}, {label:'EAN Carton', value:'08056214620307'}, {label:'Shelf Life', value:'24 months at -18°C (-0.4°F)'}, {label:'Energy', value:'333 kcal / 1385 kJ per 100g'}, {label:'Allergens', value:'MILK, HAZELNUTS, EGGS'}, {label:'May Contain', value:'SOY, other NUTS, PEANUTS'}, {label:'Gluten', value:'GLUTEN FREE'} ] },
-  pistacchio: { image: 'pistacchio-open.webp', specs: [ {label:'Product Code', value:'BBTP-0030'}, {label:'Description', value:'Custard gelato with pistachio spread 20%'}, {label:'Net Weight', value:'500ml / 300g'}, {label:'EAN Product', value:'8056214620055'}, {label:'EAN Carton', value:'08056214620505'}, {label:'Shelf Life', value:'24 months at -18°C (-0.4°F)'}, {label:'Energy', value:'333 kcal / 1385 kJ per 100g'}, {label:'Allergens', value:'MILK, PISTACHIO'}, {label:'May Contain', value:'SOY, other NUTS, PEANUTS'}, {label:'Gluten', value:'GLUTEN FREE'} ] }
+  classico: {
+    image: 'classico-open.webp',
+    specs: [
+      {label:'Product Code', value:'BBT-0010'},
+      {label:'Description', value:'Custard Gelato'},
+      {label:'Net Weight', value:'500ml / 300g'},
+      {label:'EAN Product', value:'8056214620017'},
+      {label:'EAN Carton', value:'08056214620109'},
+      {label:'Shelf Life', value:'24 months at -18°C (-0.4°F)'},
+      {label:'Allergens', value:'MILK, EGGS'},
+      {label:'May Contain', value:'SOY, NUTS, PEANUTS'},
+      {label:'Gluten', value:'GLUTEN FREE'},
+      {label:'Ingredients', value:'Fresh Italian CREAM, Italian fresh whole MILK, sugar, skimmed MILK powder, free-range EGG yolk', wide:true},
+      {label:'Storage', value:'Keep at -18°C (-0.4°F). Do not refreeze after defrosting.', wide:true},
+      {label:'Packaging', value:'Container PET01, lid PP05, seal PAP22. Check the recycling rules and regulations of your council.', wide:true}
+    ],
+    nutrition: [
+      {key:'energy', value:'1066 kJ / 255 kcal'},
+      {key:'fat', value:'16g'},
+      {key:'saturates', value:'11g', sub:true},
+      {key:'carbs', value:'25g'},
+      {key:'sugars', value:'25g', sub:true},
+      {key:'protein', value:'3.1g'},
+      {key:'salt', value:'0.1g'}
+    ]
+  },
+  dolcevita: {
+    image: 'dolcevita-open.webp',
+    specs: [
+      {label:'Product Code', value:'BDV-0020'},
+      {label:'Description', value:'Custard gelato with gianduia spread 20%'},
+      {label:'Net Weight', value:'500ml / 300g'},
+      {label:'EAN Product', value:'8056214620031'},
+      {label:'EAN Carton', value:'08056214620307'},
+      {label:'Shelf Life', value:'24 months at -18°C (-0.4°F)'},
+      {label:'Allergens', value:'MILK, HAZELNUTS, EGGS'},
+      {label:'May Contain', value:'SOY, other NUTS, PEANUTS'},
+      {label:'Gluten', value:'GLUTEN FREE'},
+      {label:'Ingredients', value:'Fresh Italian CREAM 36%, sugar, Italian fresh whole MILK 23%, sunflower oil, skimmed MILK powder, Italian HAZELNUT paste, Italian free-range EGG yolk 1.6%, low-fat cocoa powder, BUTTER, Madagascar Bourbon vanilla extract', wide:true},
+      {label:'Storage', value:'Keep at -18°C (-0.4°F). Do not refreeze after defrosting.', wide:true},
+      {label:'Packaging', value:'Container PET01, lid PP05, seal PAP22. Check the recycling rules and regulations of your council.', wide:true}
+    ],
+    nutrition: [
+      {key:'energy', value:'1385 kJ / 333 kcal'},
+      {key:'fat', value:'22g'},
+      {key:'saturates', value:'12g', sub:true},
+      {key:'carbs', value:'29g'},
+      {key:'sugars', value:'29g', sub:true},
+      {key:'protein', value:'3.7g'},
+      {key:'salt', value:'0.13g'},
+      {key:'fiber', value:'0.6g'}
+    ]
+  },
+  pistacchio: {
+    image: 'pistacchio-open.webp',
+    specs: [
+      {label:'Product Code', value:'BBTP-0030'},
+      {label:'Description', value:'Custard gelato with pistachio spread 20%'},
+      {label:'Net Weight', value:'500ml / 300g'},
+      {label:'EAN Product', value:'8056214620055'},
+      {label:'EAN Carton', value:'08056214620505'},
+      {label:'Shelf Life', value:'24 months at -18°C (-0.4°F)'},
+      {label:'Allergens', value:'MILK, PISTACHIO'},
+      {label:'May Contain', value:'SOY, other NUTS, PEANUTS'},
+      {label:'Gluten', value:'GLUTEN FREE'},
+      {label:'Ingredients', value:'Fresh Italian CREAM 36%, Italian fresh whole MILK 24%, sugar, skimmed MILK powder, PISTACHIO paste 5%, sunflower oil, Italian free-range EGG yolk 1.6%, BUTTER, salt', wide:true},
+      {label:'Storage', value:'Keep at -18°C (-0.4°F). Do not refreeze after defrosting.', wide:true},
+      {label:'Packaging', value:'Container PET01, lid PP05, seal PAP22. Check the recycling rules and regulations of your council.', wide:true}
+    ],
+    nutrition: [
+      {key:'energy', value:'1385 kJ / 333 kcal'},
+      {key:'fat', value:'22g'},
+      {key:'saturates', value:'12g', sub:true},
+      {key:'carbs', value:'29g'},
+      {key:'sugars', value:'29g', sub:true},
+      {key:'protein', value:'3.7g'},
+      {key:'salt', value:'0.13g'},
+      {key:'fiber', value:'0.6g'}
+    ]
+  }
+};
+
+const NUTRITION_LABELS_EN = {
+  energy: 'Energy',
+  fat: 'Fat',
+  saturates: 'of which saturates',
+  carbs: 'Carbohydrates',
+  sugars: 'of which sugars',
+  protein: 'Protein',
+  salt: 'Salt',
+  fiber: 'Fiber'
 };
 
 let __lastOpenedSpecs = null;
@@ -1581,13 +1723,29 @@ function renderSpecs(productId, title) {
   overlayTitle.textContent = title;
 
   const i18n = window.BadianiI18n;
+  const tt = (key, fallback) => {
+    if (i18n && i18n.t) {
+      const v = i18n.t(key);
+      if (v !== key) return v;
+    }
+    return fallback;
+  };
   let specsHTML = '';
   data.specs.forEach(spec => {
     const labelKey = i18n && i18n.translateSpecLabelLabelToKey ? i18n.translateSpecLabelLabelToKey(spec.label) : null;
     const label = labelKey && i18n && i18n.t ? i18n.t(labelKey) : spec.label;
     const value = i18n && i18n.translateSpecValue ? i18n.translateSpecValue(productId, spec.label, spec.value) : spec.value;
-    specsHTML += `<div class="spec-card"><span class="spec-label">${String(label).toUpperCase()}</span><span class="spec-value">${value}</span></div>`;
+    const wideClass = spec.wide ? ' spec-card--wide' : '';
+    specsHTML += `<div class="spec-card${wideClass}"><span class="spec-label">${String(label).toUpperCase()}</span><span class="spec-value">${value}</span></div>`;
   });
+  if (data.nutrition && data.nutrition.length) {
+    let rowsHTML = '';
+    data.nutrition.forEach(row => {
+      const rowLabel = tt('nutrition.' + row.key, NUTRITION_LABELS_EN[row.key] || row.key);
+      rowsHTML += `<div class="nutrition-row${row.sub ? ' nutrition-row--sub' : ''}"><span class="nutrition-name">${rowLabel}</span><span class="nutrition-value">${row.value}</span></div>`;
+    });
+    specsHTML += `<div class="spec-card spec-card--wide"><span class="spec-label">${tt('spec.nutrition', 'Nutritional information')} <small>· ${tt('spec.nutritionPer100g', 'average values per 100g')}</small></span><div class="nutrition-table">${rowsHTML}</div></div>`;
+  }
   overlaySpecsContent.innerHTML = specsHTML;
 }
 
@@ -1624,10 +1782,10 @@ function openSpecs(productId, title) {
       specTitle = 'BUONTALENTI CLASSICO';
     } else if (card.classList.contains('dolcevita')) {
       specId = 'dolcevita';
-      specTitle = 'LA DOLCEVITA';
+      specTitle = 'BUONTALENTI LA DOLCEVITA';
     } else {
       specId = 'pistacchio';
-      specTitle = 'PISTACCHIO DI BRONTE';
+      specTitle = 'BUONTALENTI PISTACCHIO';
     }
     
     cardImg.addEventListener('touchstart', function(e) {
